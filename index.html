@@ -5,81 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syed Mohd Hassan - Cybersecurity Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a14;
-            color: #c7d2fe;
+            font-family: 'Poppins', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            background-image: radial-gradient(rgba(129, 140, 248, 0.1) 1px, transparent 1px);
+            background-size: 2rem 2rem;
             overflow-x: hidden;
         }
 
-        .grid-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background-image: 
-                linear-gradient(rgba(17, 24, 39, 0) 0px, #0a0a14 100%),
-                linear-gradient(to right, rgba(30, 41, 59, 0.2) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(30, 41, 59, 0.2) 1px, transparent 1px);
-            background-size: 2rem 2rem;
-            animation: pan 60s linear infinite;
-        }
-
-        @keyframes pan {
-            0% { background-position: 0 0; }
-            100% { background-position: 100% 100%; }
-        }
-
         .terminal-card {
-            background: rgba(10, 10, 20, 0.5);
+            background: rgba(13, 17, 23, 0.5);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(63, 63, 134, 0.5);
-            border-radius: 0.5rem;
+            border: 1px solid #30363d;
+            border-radius: 0.75rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .terminal-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 0, rgba(129, 140, 248, 0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none; /* Fix for click issue */
-        }
-
         .terminal-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(129, 140, 248, 0.8);
-            box-shadow: 0 0 25px rgba(129, 140, 248, 0.3);
-        }
-        
-        .terminal-card:hover::before {
-            opacity: 1;
+            transform: translateY(-5px) scale(1.05);
+            border-color: #818cf8;
+            box-shadow: 0 0 30px rgba(129, 140, 248, 0.2);
         }
         
         .sticky-nav {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(10, 10, 20, 0.7);
+            background: rgba(13, 17, 23, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(63, 63, 134, 0.5);
+            border-bottom: 1px solid #30363d;
         }
         
         .section-header {
-            font-family: 'Roboto Mono', monospace;
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
@@ -128,7 +92,7 @@
             position: relative;
             padding-left: 2.5rem;
             padding-bottom: 2rem;
-            border-left: 2px solid rgba(63, 63, 134, 0.5);
+            border-left: 2px solid #30363d;
         }
         .timeline-item:last-child {
             border-left: 2px solid transparent;
@@ -142,7 +106,7 @@
             width: 1rem;
             background-color: #818cf8;
             border-radius: 50%;
-            border: 2px solid #0a0a14;
+            border: 2px solid #0d1117;
         }
         
         .horizontal-scroll-container {
@@ -161,8 +125,15 @@
             flex: 0 0 90%;
             scroll-snap-align: center;
         }
-        @media (min-width: 640px) { .scroll-card { flex-basis: 45%; } }
-        @media (min-width: 1024px) { .scroll-card { flex-basis: 30%; } }
+        @media (min-width: 768px) { .scroll-card { flex-basis: 60%; } }
+        @media (min-width: 1024px) { .scroll-card { flex-basis: 50%; } }
+        
+        .tab-button.active {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body>
@@ -172,12 +143,13 @@
     <nav class="sticky-nav">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-white tracking-wider">Hassan's Portfolio</a>
-            <div class="hidden md:flex space-x-6 items-center font-mono text-sm">
-                <a href="#skills" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">_skills</a>
-                <a href="#projects" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">_projects</a>
-                <a href="#investigations" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">_investigations</a>
-                <a href="#certifications" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">_certs</a>
-                <a href="#contact" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">_contact</a>
+            <div class="hidden md:flex space-x-6 items-center text-sm">
+                <a href="#skills" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Projects</a>
+                <a href="#tools" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Tools</a>
+                <a href="#investigations" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Investigations</a>
+                <a href="#certifications" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Certifications</a>
+                <a href="#contact" class="text-gray-300 hover:text-indigo-300 transition-colors duration-300">Contact</a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -185,19 +157,20 @@
                 </button>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 font-mono text-sm">
-             <a href="#skills" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">_skills</a>
-            <a href="#projects" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">_projects</a>
-            <a href="#investigations" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">_investigations</a>
-            <a href="#certifications" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">_certs</a>
-            <a href="#contact" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">_contact</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 text-sm">
+             <a href="#skills" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Skills</a>
+            <a href="#projects" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Projects</a>
+            <a href="#tools" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Tools</a>
+            <a href="#investigations" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Investigations</a>
+            <a href="#certifications" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Certifications</a>
+            <a href="#contact" class="block text-gray-300 hover:text-indigo-300 transition-colors duration-300">Contact</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <header class="container mx-auto px-6 py-24 text-center flex flex-col items-center">
         <div class="typewriter max-w-2xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-white font-mono">Syed Mohd Hassan</h1>
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Syed Mohd Hassan</h1>
         </div>
         <p class="mt-4 text-lg text-indigo-200 max-w-3xl">
             Final-year MCA student with a strong foundation in computer science and a growing expertise in cybersecurity. Passionate about Defensive Security, focused on identifying, analyzing, and mitigating security threats while continuously developing skills to protect digital environments.
@@ -276,6 +249,32 @@
                 </div>
             </div>
         </section>
+        
+        <!-- Tools Section with Tabs -->
+        <section id="tools" class="py-12">
+            <h2 class="section-header text-3xl font-bold text-center mb-10">TOOL_CATALOG</h2>
+            <div class="w-full max-w-4xl mx-auto terminal-card p-6">
+                <!-- Tab Buttons -->
+                <div class="flex flex-wrap justify-center border-b border-white/10 mb-8">
+                    <button class="tab-button active py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'network')">Network</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'endpoint')">Endpoint</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'siem')">SIEM</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'soar')">SOAR</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'offensive')">Offensive Security</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'malware')">Malware Analysis</button>
+                    <button class="tab-button py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'threatintel')">Threat Intelligence</button>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="network" class="tab-content active"><div class="grid sm:grid-cols-2 gap-6"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Wireshark-1679A7?&style=for-the-badge&logo=Wireshark&logoColor=white" alt="Wireshark"><p class="text-sm text-gray-300 mt-2">A network protocol analyzer for traffic inspection.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Fiddler-9C1A1A?&style=for-the-badge&logo=Fiddler&logoColor=white" alt="Fiddler"><p class="text-sm text-gray-300 mt-2">A web debugging proxy for capturing HTTP/S traffic.</p></div></div></div>
+                <div id="endpoint" class="tab-content"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh"><p class="text-sm text-gray-300 mt-2">An open-source security platform for threat detection.</p></div></div>
+                <div id="siem" class="tab-content"><div class="grid sm:grid-cols-2 gap-6"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Splunk-000000?&style=for-the-badge&logo=Splunk&logoColor=white" alt="Splunk"><p class="text-sm text-gray-300 mt-2">A platform for searching, monitoring, and analyzing machine-generated data.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh"><p class="text-sm text-gray-300 mt-2">Used as a SIEM for log analysis and security event correlation.</p></div></div></div>
+                <div id="soar" class="tab-content"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Shuffle-4169E1?&style=for-the-badge&logoColor=white" alt="Shuffle"><p class="text-sm text-gray-300 mt-2">An open-source SOAR platform for automating security workflows.</p></div></div>
+                <div id="offensive" class="tab-content"><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Metasploit-2A2F39?&style=for-the-badge&logo=Metasploit&logoColor=white" alt="Metasploit"><p class="text-sm text-gray-300 mt-2">A penetration testing framework for exploiting vulnerabilities.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Nmap-4682B4?&style=for-the-badge&logo=Nmap&logoColor=white" alt="Nmap"><p class="text-sm text-gray-300 mt-2">A network scanner for discovering hosts and services.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-BeEF-F77400?&style=for-the-badge&logoColor=white" alt="BeEF"><p class="text-sm text-gray-300 mt-2">A browser exploitation framework for web security testing.</p></div></div></div>
+                <div id="malware" class="tab-content"><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-REMnux-2A2F39?&style=for-the-badge&logoColor=white" alt="REMnux"><p class="text-sm text-gray-300 mt-2">A Linux toolkit for reverse-engineering and analyzing malware.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-ProcMon-4682B4?&style=for-the-badge&logoColor=white" alt="ProcMon"><p class="text-sm text-gray-300 mt-2">Monitors file system, Registry, and process/thread activity.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-PEStudio-FFA500?&style=for-the-badge&logoColor=white" alt="PEStudio"><p class="text-sm text-gray-300 mt-2">Performs static analysis of executable files.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-HxD-FF4500?&style=for-the-badge&logoColor=white" alt="HxD"><p class="text-sm text-gray-300 mt-2">A fast hex editor for raw disk editing and file inspection.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Sysinternals_Suite-008080?&style=for-the-badge&logoColor=white" alt="Sysinternals Suite"><p class="text-sm text-gray-300 mt-2">A suite of tools for managing and troubleshooting Windows systems.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-ANY.RUN-DC143C?&style=for-the-badge&logoColor=white" alt="ANY.RUN"><p class="text-sm text-gray-300 mt-2">An interactive online malware analysis sandbox.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-VirusTotal-4E9A06?&style=for-the-badge&logoColor=white" alt="VirusTotal"><p class="text-sm text-gray-300 mt-2">Online service that analyzes files and URLs for malware.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-FlareVM-6B8E23?&style=for-the-badge&logoColor=white" alt="FlareVM"><p class="text-sm text-gray-300 mt-2">A Windows-based security distribution for malware analysis.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Regshot-FFD700?&style=for-the-badge&logoColor=white" alt="Regshot"><p class="text-sm text-gray-300 mt-2">A registry comparison utility for analyzing system changes.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Process_Hacker-00CED1?&style=for-the-badge&logoColor=white" alt="Process Hacker"><p class="text-sm text-gray-300 mt-2">An advanced tool for monitoring system resources and processes.</p></div></div></div>
+                <div id="threatintel" class="tab-content"><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-VirusTotal-4E9A06?&style=for-the-badge&logoColor=white" alt="VirusTotal"><p class="text-sm text-gray-300 mt-2">Analyzes suspicious files and URLs to detect malware.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-ANY.RUN-DC143C?&style=for-the-badge&logoColor=white" alt="ANY.RUN"><p class="text-sm text-gray-300 mt-2">Interactive online sandbox for malware analysis.</p></div><div class="bg-white/5 p-4 rounded-lg"><img src="https://img.shields.io/badge/-Hybrid%20Analysis-3B82F6?&style=for-the-badge&logoColor=white" alt="Hybrid Analysis"><p class="text-sm text-gray-300 mt-2">Free malware analysis service powered by Falcon Sandbox.</p></div></div></div>
+            </div>
+        </section>
 
         <!-- Investigations Section -->
         <section id="investigations" class="py-12">
@@ -290,15 +289,15 @@
         <!-- Certifications Section -->
         <section id="certifications" class="py-12">
             <h2 class="section-header text-3xl font-bold text-center text-white mb-10">CERTIFICATIONS</h2>
-            <div class="horizontal-scroll-container">
-                <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend Logo" class="h-16 w-auto rounded-full"><div class="mt-4"><h3 class="text-lg font-semibold text-white">SOC Analyst Learning Path</h3><p class="text-sm text-indigo-300 mt-1">LetsDefend</p></div></a>
-                <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Google Cybersecurity Professional</h3><p class="text-sm text-indigo-300 mt-1">Google</p></div></a>
-                <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Ethical Hacking Essentials</h3><p class="text-sm text-indigo-300 mt-1">EC-Council</p></div></a>
-                <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Network Communication Fundamentals</h3><p class="text-sm text-indigo-300 mt-1">Coursera</p></div></a>
-                <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Intro to Linux & Shell</h3><p class="text-sm text-indigo-300 mt-1">IBM / Coursera</p></div></a>
-                <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Ethical Hacking From Scratch</h3><p class="text-sm text-indigo-300 mt-1">Udemy</p></div></a>
-                <a href="https://lnkd.in/gHFsZ4bG" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><svg class="w-16 h-16 text-white" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg><div class="mt-4"><h3 class="text-lg font-semibold text-white">Splunk for Security Analytics</h3><p class="text-sm text-indigo-300 mt-1">LinkedIn Learning</p></div></a>
-                <a href="https://coursera.org/verify/QFJHJRD3UMXZ" target="_blank" class="scroll-card terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZRF9RS7ReyzCtlkRLz4bJqFwN8_wNPpI_RQ&s" alt="Splunk Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Splunk 101</h3><p class="text-sm text-indigo-300 mt-1">Splunk / Coursera</p></div></a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend Logo" class="h-16 w-auto rounded-full"><div class="mt-4"><h3 class="text-lg font-semibold text-white">SOC Analyst Learning Path</h3><p class="text-sm text-indigo-300 mt-1">LetsDefend</p></div></a>
+                <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Google Cybersecurity Professional</h3><p class="text-sm text-indigo-300 mt-1">Google</p></div></a>
+                <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Ethical Hacking Essentials</h3><p class="text-sm text-indigo-300 mt-1">EC-Council</p></div></a>
+                <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Network Communication Fundamentals</h3><p class="text-sm text-indigo-300 mt-1">Coursera</p></div></a>
+                <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Intro to Linux & Shell</h3><p class="text-sm text-indigo-300 mt-1">IBM / Coursera</p></div></a>
+                <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Ethical Hacking From Scratch</h3><p class="text-sm text-indigo-300 mt-1">Udemy</p></div></a>
+                <a href="https://lnkd.in/gHFsZ4bG" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><svg class="w-16 h-16 text-white" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg><div class="mt-4"><h3 class="text-lg font-semibold text-white">Splunk for Security Analytics</h3><p class="text-sm text-indigo-300 mt-1">LinkedIn Learning</p></div></a>
+                <a href="https://coursera.org/verify/QFJHJRD3UMXZ" target="_blank" class="terminal-card p-6 flex flex-col items-center justify-between text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZRF9RS7ReyzCtlkRLz4bJqFwN8_wNPpI_RQ&s" alt="Splunk Logo" class="h-16 w-auto logo-invert"><div class="mt-4"><h3 class="text-lg font-semibold text-white">Splunk 101</h3><p class="text-sm text-indigo-300 mt-1">Splunk / Coursera</p></div></a>
             </div>
         </section>
     </main>
