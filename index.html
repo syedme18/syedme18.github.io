@@ -1,368 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hassan | Cybersecurity Portfolio</title>
-  <meta name="description" content="Syed Mohd Hassan — Cybersecurity student & defensive security enthusiast. Projects, tools, certifications, and SOC investigations." />
-  <meta property="og:title" content="Hassan | Cybersecurity Portfolio" />
-  <meta property="og:description" content="Final-year MCA student with a strong foundation in CS and growing expertise in cybersecurity (Defensive Security)." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0ea5e9" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #0b0f17;
-      --bg-soft: #0f1522;
-      --card: #111827;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --accent: #22d3ee; /* cyan */
-      --brand: #60a5fa; /* blue */
-      --ring: 0 0 0 3px rgba(34,211,238,.35);
-      --radius: 18px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --shadow-soft: 0 6px 18px rgba(0,0,0,.25);
-      --grid-gap: clamp(14px, 2vw, 22px);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color:var(--text);
-      background: radial-gradient(1200px 700px at 10% -10%, rgba(14,165,233,.15), transparent 60%),
-                  radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.12), transparent 60%),
-                  linear-gradient(180deg, var(--bg), #070a12);
-      line-height:1.6;
-      -webkit-font-smoothing: antialiased;
-      scroll-behavior: smooth;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hassan | Cybersecurity Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f17;
+  --card:#111827;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --accent:#22d3ee;
+  --radius:18px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --grid-gap:clamp(14px,2vw,22px);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+  color:var(--text);
+  background:radial-gradient(1200px 700px at 10% -10%,rgba(14,165,233,.15),transparent 60%),
+             radial-gradient(900px 600px at 90% 10%,rgba(34,197,94,.12),transparent 60%),
+             linear-gradient(180deg,var(--bg),#070a12);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  scroll-behavior:smooth;
+}
 
-    /* Header */
-    header{
-      position: sticky; top:0; z-index:50; backdrop-filter: blur(8px);
-      background: linear-gradient(180deg, rgba(15,23,42,.85), rgba(15,23,42,.55));
-      border-bottom: 1px solid rgba(148,163,184,.15);
-    }
-    .container{max-width:1100px; margin:0 auto; padding: 0 18px}
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
-    .logo{
-      width:42px; height:42px; border-radius:12px;
-      background: radial-gradient(60% 60% at 30% 20%, rgba(34,211,238,.5), transparent),
-                  linear-gradient(135deg, #0ea5e9, #6366f1);
-      box-shadow: 0 8px 24px rgba(14,165,233,.35);
-    }
-    .brand span{font-weight:700; letter-spacing:.3px}
-    nav a{color:var(--muted); text-decoration:none; margin-left:18px; font-weight:600}
-    nav a:hover{color:var(--text)}
+/* Header */
+header{
+  position:sticky; top:0; z-index:999;
+  backdrop-filter:blur(10px);
+  background:linear-gradient(180deg,rgba(15,23,42,.95),rgba(15,23,42,.85));
+  border-bottom:1px solid rgba(148,163,184,.15);
+}
+.container{max-width:1100px;margin:0 auto;padding:0 18px;}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);}
+.logo{width:42px;height:42px;border-radius:12px;background:radial-gradient(60% 60% at 30% 20%,rgba(34,211,238,.5),transparent),linear-gradient(135deg,#0ea5e9,#6366f1);box-shadow:0 8px 24px rgba(14,165,233,.35);}
+.brand span{font-weight:700;letter-spacing:.3px;}
+nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;transition:color .3s;}
+nav a:hover{color:var(--accent);}
 
-    /* Hero */
-    .hero{display:grid; grid-template-columns: 1.2fr .8fr; gap: var(--grid-gap); align-items:center; padding: 48px 0 26px}
-    @media (max-width: 900px){ .hero{grid-template-columns:1fr; padding: 28px 0} }
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
-      border:1px solid rgba(148,163,184,.16);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-    .hero .intro{padding:28px}
-    h1{font-size: clamp(28px, 4vw, 44px); line-height:1.12; margin:0 0 12px}
-    .subtitle{color:var(--muted); font-size: clamp(14px, 1.6vw, 16px); margin: 6px 0 18px}
-
-    .cta{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px}
-    .btn{appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:14px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:10px}
-    .btn-primary{background: linear-gradient(135deg, #0ea5e9, #6366f1); color:white; box-shadow: 0 12px 22px rgba(99,102,241,.28)}
-    .btn-primary:hover{filter: brightness(1.05)}
-    .btn-ghost{background: rgba(148,163,184,.12); color: var(--text); border:1px solid rgba(148,163,184,.18)}
-    .btn-ghost:hover{background: rgba(148,163,184,.2)}
-
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
-    .badges img{height:32px; border-radius:10px; border:1px solid rgba(148,163,184,.18)}
-
-    /* Sections */
-    section{padding: 26px 0 8px}
-    .section-title{font-size:22px; margin: 12px 0 18px}
-    .grid{display:grid; gap: var(--grid-gap)}
-
-    /* Projects */
-    .projects{grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));}
-    .project-card{padding:18px; transition: transform .25s ease, box-shadow .25s ease}
-    .project-card:hover{transform: translateY(-4px); box-shadow: 0 14px 30px rgba(0,0,0,.35)}
-    .project-title{font-weight:700}
-    .project-links{margin-top:10px}
-    .project-links a{color:white; font-weight:700}
-
-    /* Tools */
-    .tool-group{padding:18px}
-    .tool-title{font-weight:800; letter-spacing:.35px; color: #a5b4fc; margin-bottom:6px}
-    .tool-badges{display:flex; flex-wrap:wrap; gap:10px}
-    .tool-badges img{height:34px; border-radius:10px; border:1px solid rgba(148,163,184,.18)}
-
-    /* Investigations images */
-    .gallery{display:grid; grid-template-columns: 1fr; gap:12px}
-    .gallery img{width:100%; height:auto; border-radius:14px; border:1px solid rgba(148,163,184,.18); box-shadow: var(--shadow-soft)}
-
-    /* Certifications */
-    .certs{display:flex; flex-wrap:wrap; gap:10px}
-    .certs img{height:38px; border-radius:10px; border:1px solid rgba(148,163,184,.18)}
-
-    /* Footer */
-    footer{padding:24px 0 40px; color:var(--muted)}
-
-    /* Animations */
-    .reveal{opacity:0; transform: translateY(14px) scale(.98); filter: blur(2px);}
-    .reveal.on{opacity:1; transform: translateY(0) scale(1); filter: blur(0); transition: all .7s cubic-bezier(.2,.7,.2,1)}
-    .pop{animation: pop .6s ease .15s both}
-    @keyframes pop{from{transform:scale(.96); opacity:0} to{transform:scale(1); opacity:1}}
-
-    /* Scrollbar & focus */
-    ::selection{background: rgba(34,211,238,.25)}
-    a:focus, button:focus{outline: none; box-shadow: var(--ring)}
-
-    /* Back-to-top */
-    .to-top{position: fixed; right: 16px; bottom: 16px; opacity:0; pointer-events:none; transition: opacity .25s ease}
-    .to-top.show{opacity:1; pointer-events:auto}
-  </style>
+/* Hero */
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--grid-gap);align-items:center;padding:48px 0 26px;}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:28px 0;}.hero-gif{margin-top:20px;}}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid rgba(148,163,184,.16);border-radius:var(--radius);box-shadow:var(--shadow);}
+.card:hover{transform:scale(1.02);transition:all .3s ease;}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.12;margin:0 0 12px;}
+.subtitle{color:var(--muted);font-size:clamp(14px,1.6vw,16px);margin:6px 0 18px;}
+.btn{appearance:none;border:none;cursor:pointer;padding:12px 16px;border-radius:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;}
+.btn-primary{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:white;box-shadow:0 12px 22px rgba(99,102,241,.28);}
+.btn-primary:hover{filter:brightness(1.05);}
+.btn-ghost{background:rgba(148,163,184,.12);color:var(--text);border:1px solid rgba(148,163,184,.18);}
+.btn-ghost:hover{background:rgba(148,163,184,.2);}
+.section-title{font-size:22px;margin:12px 0 18px;}
+.grid{display:grid;gap:var(--grid-gap);}
+.projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.project-card{padding:18px;transition:transform .25s ease,box-shadow .25s ease;}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.35);}
+.tool-badges img{height:34px;border-radius:10px;border:1px solid rgba(148,163,184,.18);margin-bottom:6px;}
+.badges img{height:36px;border-radius:10px;margin-bottom:6px;transition:transform .3s;}
+.badges img:hover{transform:scale(1.2);}
+.snapshot{transition:all .3s ease;cursor:pointer;}
+.snapshot:hover{transform:scale(1.08);box-shadow:0 12px 25px rgba(0,0,0,.4);}
+.to-top{position:fixed;right:16px;bottom:16px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
+.to-top.show{opacity:1;pointer-events:auto;}
+</style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#home" aria-label="Home">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Hassan • Cybersecurity</span>
-      </a>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#tools">Tools</a>
-        <a href="#soc">SOC Work</a>
-        <a href="#certs">Certifications</a>
-      </nav>
+
+<header>
+  <div class="container nav">
+    <a class="brand" href="#home">
+      <div class="logo"></div>
+      <span>Hassan • Cybersecurity</span>
+    </a>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#tools">Tools</a>
+      <a href="#soc">SOC Work</a>
+      <a href="#certs">Certifications</a>
+    </nav>
+  </div>
+</header>
+
+<main id="home" class="container">
+<!-- Hero -->
+<section class="hero">
+  <div class="card intro reveal snapshot" style="padding:28px">
+    <h1>Hi, I'm Hassan</h1>
+    <p class="subtitle">Final-year MCA student with strong CS foundation & growing cybersecurity expertise. Passionate about <b>Defensive Security</b>.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="#">Connect on LinkedIn</a>
+      <a class="btn btn-ghost" href="#projects">View Projects</a>
     </div>
-  </header>
+  </div>
+  <div class="hero-gif">
+    <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Tech Animation" style="max-width:100%;border-radius:12px;">
+  </div>
+</section>
 
-  <main id="home" class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div class="card intro reveal">
-        <h1 class="pop">Hi, I'm Hassan</h1>
-        <p class="subtitle">Final-year MCA student with a strong foundation in computer science and a growing expertise in cybersecurity. Passionate about <b>Defensive Security</b>, focused on identifying, analyzing, and mitigating security threats while continuously developing skills to protect digital environments.</p>
-        <div class="cta">
-          <a class="btn btn-primary" href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" rel="noopener">Connect on LinkedIn</a>
-          <a class="btn btn-ghost" href="#projects">View Projects</a>
-        </div>
-        <div class="badges" style="margin-top:18px">
-          <img src="https://img.shields.io/badge/-LinkedIn-0072b1?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn badge" />
-        </div>
-      </div>
-      <div class="card reveal" style="padding:22px">
-        <h3 style="margin:0 0 10px">Snapshot</h3>
-        <ul style="margin:0; padding-left:18px; color:var(--muted)">
-          <li>Focus: Defensive Security • SOC • Malware Analysis</li>
-          <li>Stack: Splunk • Wazuh • Shuffle • Windows/Linux</li>
-          <li>Goal: SOC Analyst / Threat Hunter</li>
-        </ul>
-      </div>
-    </section>
+<!-- Skills -->
+<section id="skills" class="reveal">
+  <h2 class="section-title">Skills 🛠</h2>
+  <div class="card" style="padding:18px">
+    <div class="badges">
+      <img src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Information Security" />
+      <img src="https://media.giphy.com/media/l0MYy6VHRQlVWRRbS/giphy.gif" alt="Network Security" />
+      <img src="https://media.giphy.com/media/xT1XGzqx1RkKXvlJ1G/giphy.gif" alt="Incident Response" />
+    </div>
+  </div>
+</section>
 
-    <!-- Skills -->
-    <section id="skills" class="reveal">
-      <h2 class="section-title">Skills 🛠</h2>
-      <div class="card" style="padding:18px">
-        <div class="badges">
-          <img src="https://img.shields.io/badge/Information%20Security-5C8DBB?style=for-the-badge&logo=security&logoColor=white" alt="Information Security" />
-          <img src="https://img.shields.io/badge/Network%20Security-1BA0E8?style=for-the-badge&logo=cisco&logoColor=white" alt="Network Security" />
-          <img src="https://img.shields.io/badge/Incident%20Response-FC8C40?style=for-the-badge&logo=incident-response&logoColor=white" alt="Incident Response" />
-          <img src="https://img.shields.io/badge/Malware%20Analysis-0099CC?style=for-the-badge&logo=malwarebytes&logoColor=white" alt="Malware Analysis" />
-          <img src="https://img.shields.io/badge/SIEM-FF6600?style=for-the-badge&logo=ibm&logoColor=white" alt="SIEM" />
-          <img src="https://img.shields.io/badge/SOAR-DA4932?style=for-the-badge&logo=dynatrace&logoColor=white" alt="SOAR" />
-          <img src="https://img.shields.io/badge/Threat%20Intelligence-FF7800?style=for-the-badge&logo=threat-intelligence&logoColor=white" alt="Threat Intelligence" />
-          <img src="https://img.shields.io/badge/IDS-0072C6?style=for-the-badge&logo=cisco&logoColor=white" alt="IDS" />
-          <img src="https://img.shields.io/badge/IPS-0072C6?style=for-the-badge&logo=cisco&logoColor=white" alt="IPS" />
-          <img src="https://img.shields.io/badge/Log%20Analysis-005D8C?style=for-the-badge&logo=splunk&logoColor=white" alt="Log Analysis" />
-          <img src="https://img.shields.io/badge/Vulnerability%20Management-4E5B31?style=for-the-badge&logo=tenable&logoColor=white" alt="Vulnerability Management" />
-          <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux" />
-          <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
-          <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Bash" />
-          <img src="https://img.shields.io/badge/C%2FC%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C/C++" />
-          <img src="https://img.shields.io/badge/Communication-0072C6?style=for-the-badge&logo=communication&logoColor=white" alt="Communication" />
-          <img src="https://img.shields.io/badge/Critical%20Thinking-FFCC00?style=for-the-badge&logo=critical-thinking&logoColor=black" alt="Critical Thinking" />
-        </div>
-      </div>
-    </section>
+<!-- Projects -->
+<section id="projects" class="reveal">
+  <h2 class="section-title">Projects</h2>
+  <div class="grid projects">
+    <article class="card project-card">
+      <div class="project-title">SOC Automation Project</div>
+      <p class="muted">Windows 10 (Sysmon) • Wazuh • Shuffle • TheHive • DO</p>
+      <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="SOC GIF" style="border-radius:10px;margin-top:10px;">
+      <div class="project-links"><a class="btn btn-primary" href="#">View Project</a></div>
+    </article>
+  </div>
+</section>
 
-    <!-- Projects -->
-    <section id="projects" class="reveal">
-      <h2 class="section-title">Projects</h2>
-      <div class="grid projects">
-        <article class="card project-card">
-          <div class="project-title">SOC Automation Project</div>
-          <p class="muted">Windows 10 (Sysmon) • Wazuh • Shuffle • TheHive • DO
-          </p>
-          <div class="project-links"><a class="btn btn-primary" href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" rel="noopener">View Project</a></div>
-        </article>
-        <article class="card project-card">
-          <div class="project-title">Splunk Enterprise Setup and Data Ingestion</div>
-          <p class="muted">Install, forwarders, ingestion, alerts & dashboards</p>
-          <div class="project-links"><a class="btn btn-primary" href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" rel="noopener">View Project</a></div>
-        </article>
-        <article class="card project-card">
-          <div class="project-title">Wazuh Installation & Agent Deployment Lab</div>
-          <p class="muted">SIEM/EDR lab with endpoint coverage</p>
-          <div class="project-links"><a class="btn btn-primary" href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" rel="noopener">View Project</a></div>
-        </article>
-        <article class="card project-card">
-          <div class="project-title">Malware Analysis Lab Setup</div>
-          <p class="muted">Isolated REMnux/FlareVM workflow</p>
-          <div class="project-links"><a class="btn btn-primary" href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" rel="noopener">View Project</a></div>
-        </article>
-        <article class="card project-card">
-          <div class="project-title">Active Directory in VM</div>
-          <p class="muted">Domain Controller build & management</p>
-          <div class="project-links"><a class="btn btn-primary" href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" rel="noopener">View Project</a></div>
-        </article>
-      </div>
-    </section>
+</main>
 
-    <!-- Tools -->
-    <section id="tools" class="reveal">
-      <h2 class="section-title">Tools</h2>
-      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        <div class="card tool-group">
-          <div class="tool-title">Network</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-Wireshark-1679A7?&style=for-the-badge&logo=Wireshark&logoColor=white" alt="Wireshark" />
-            <img src="https://img.shields.io/badge/-Fiddler-9C1A1A?&style=for-the-badge&logo=Fiddler&logoColor=white" alt="Fiddler" />
-          </div>
-        </div>
-        <div class="card tool-group">
-          <div class="tool-title">Endpoint</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh" />
-          </div>
-        </div>
-        <div class="card tool-group">
-          <div class="tool-title">SIEM</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-Splunk-000000?&style=for-the-badge&logo=Splunk&logoColor=white" alt="Splunk" />
-            <img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh SIEM" />
-          </div>
-        </div>
-        <div class="card tool-group">
-          <div class="tool-title">SOAR</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-Shuffle-4169E1?&style=for-the-badge&logoColor=white" alt="Shuffle" />
-          </div>
-        </div>
-        <div class="card tool-group">
-          <div class="tool-title">Offensive Security</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-Metasploit-2A2F39?&style=for-the-badge&logo=Metasploit&logoColor=white" alt="Metasploit" />
-            <img src="https://img.shields.io/badge/-Nmap-4682B4?&style=for-the-badge&logo=Nmap&logoColor=white" alt="Nmap" />
-            <img src="https://img.shields.io/badge/-BeEF-F77400?&style=for-the-badge&logoColor=white" alt="BeEF" />
-          </div>
-        </div>
-        <div class="card tool-group">
-          <div class="tool-title">Malware Analysis</div>
-          <div class="tool-badges">
-            <img src="https://img.shields.io/badge/-REMnux-2A2F39?&style=for-the-badge&logoColor=white" alt="REMnux" />
-            <img src="https://img.shields.io/badge/-ProcMon-4682B4?&style=for-the-badge&logoColor=white" alt="ProcMon" />
-            <img src="https://img.shields.io/badge/-PEStudio-FFA500?&style=for-the-badge&logoColor=white" alt="PEStudio" />
-            <img src="https://img.shields.io/badge/-HxD-FF4500?&style=for-the-badge&logoColor=white" alt="HxD" />
-            <img src="https://img.shields.io/badge/-Sysinternals_Suite-008080?&style=for-the-badge&logoColor=white" alt="Sysinternals Suite" />
-            <img src="https://img.shields.io/badge/-ANY.RUN-DC143C?&style=for-the-badge&logoColor=white" alt="ANY.RUN" />
-            <img src="https://img.shields.io/badge/-VirusTotal-4E9A06?&style=for-the-badge&logoColor=white" alt="VirusTotal" />
-            <img src="https://img.shields.io/badge/-FlareVM-6B8E23?&style=for-the-badge&logoColor=white" alt="FlareVM" />
-            <img src="https://img.shields.io/badge/-Regshot-FFD700?&style=for-the-badge&logoColor=white" alt="Regshot" />
-            <img src="https://img.shields.io/badge/-Process_Hacker-00CED1?&style=for-the-badge&logoColor=white" alt="Process Hacker" />
-          </div>
-        </div>
-      </div>
-    </section>
+<a href="#home" class="btn btn-primary to-top">↑ Top</a>
 
-    <!-- SOC Investigations -->
-    <section id="soc" class="reveal">
-      <h2 class="section-title">Hands-On SOC Investigation • LetsDefend</h2>
-      <div class="card" style="padding:18px">
-        <h3>Possible SQL Injection Payload Detection</h3>
-        <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQLi Payload Detection screenshot" />
-        </div>
-        <h3 style="margin-top:16px">VBScript Suspicious Behavior Detection</h3>
-        <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript suspicious behavior screenshot" />
-        </div>
-        <h3 style="margin-top:16px">Suspicious XLS File Detection</h3>
-        <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/466f89ab-4154-49f3-a921-a1675011fe3a" alt="Suspicious XLS detection screenshot" />
-        </div>
-      </div>
-    </section>
+<script>
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('on');io.unobserve(entry.target);}
+  });
+},{threshold:.18});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    <!-- Certifications -->
-    <section id="certs" class="reveal">
-      <h2 class="section-title">Certifications</h2>
-      <div class="card" style="padding:18px">
-        <div class="certs">
-          <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/SOC%20Analyst%20Learning%20Path-003366?style=for-the-badge&logo=letsdefend&logoColor=white" alt="SOC Analyst Learning Path" />
-          </a>
-          <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/Google%20Cybersecurity%20Professional%20Certificate-blue?style=for-the-badge&logo=google&logoColor=white" alt="Google Cybersecurity Professional" />
-          </a>
-          <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/Ethical%20Hacking%20Essentials%20by%20EcCouncil-FF0000?style=for-the-badge&logo=eccouncil&logoColor=white" alt="Ethical Hacking Essentials" />
-          </a>
-          <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/Fundamentals%20of%20Network%20Communication-003366?style=for-the-badge&logo=coursera&logoColor=white" alt="Fundamentals of Network Communication" />
-          </a>
-          <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/Hands%20on%20Introduction%20to%20Linux%20Command%20and%20Shell-0060A1?style=for-the-badge&logo=ibm&logoColor=white&color=0060A1" alt="Intro to Linux Command and Shell" />
-          </a>
-          <img src="https://img.shields.io/badge/-Network%20Fundamentals-white?&style=for-the-badge&logo=Cybrary&logoColor=white" alt="Network Fundamentals" />
-          <img src="https://img.shields.io/badge/-MySQL-0000FF?&style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
-          <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" rel="noopener">
-            <img src="https://img.shields.io/badge/Ethical%20Hacking%20From%20Scratch-purple?style=for-the-badge&logo=udemy&logoColor=white" alt="Ethical Hacking From Scratch" />
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="reveal">
-      <div class="container">
-        <p>© <span id="year"></span> Hassan • Built with ❤️ and deployed on GitHub Pages.</p>
-      </div>
-    </footer>
-  </main>
-
-  <a href="#home" class="btn btn-primary to-top" aria-label="Back to top">↑ Top</a>
-
-  <script>
-    // Intersection Observer for reveal on scroll
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('on');
-          io.unobserve(entry.target);
-        }
-      })
-    }, {threshold: .18});
-    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
-
-    // Back-to-top button
-    const topBtn = document.querySelector('.to-top');
-    const toggleTop = ()=>{
-      if (window.scrollY > 420) topBtn.classList.add('show'); else topBtn.classList.remove('show');
-    };
-    window.addEventListener('scroll', toggleTop);
-
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+const topBtn=document.querySelector('.to-top');
+window.addEventListener('scroll',()=>{if(window.scrollY>420)topBtn.classList.add('show');else topBtn.classList.remove('show');});
+</script>
 </body>
 </html>
