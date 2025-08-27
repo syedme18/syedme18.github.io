@@ -55,6 +55,42 @@
         .logo-invert {
             filter: brightness(0) invert(1);
         }
+        /* Custom scrollbar for horizontal scroll */
+        .horizontal-scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-track {
+            background: #1f2937; /* gray-800 */
+            border-radius: 10px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb {
+            background: #4b5563; /* gray-600 */
+            border-radius: 10px;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* gray-500 */
+        }
+        .scroll-card {
+            flex: 0 0 90%;
+            scroll-snap-align: center;
+        }
+        @media (min-width: 768px) {
+            .scroll-card {
+                flex-basis: 60%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .scroll-card {
+                flex-basis: 50%;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
@@ -248,16 +284,16 @@
         <!-- Investigations Section -->
         <section id="investigations" class="py-12 section-fade-in" style="animation-delay: 0.8s;">
             <h2 class="text-4xl font-bold text-center text-white mb-10">Hands-On SOC Investigations</h2>
-            <div class="space-y-12">
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+            <div class="horizontal-scroll-container">
+                <div class="scroll-card bg-gray-800 rounded-lg p-6 shadow-lg">
                     <h3 class="text-2xl font-semibold text-white mb-4">Possible SQL Injection Payload Detection</h3>
                     <img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQL Injection Detection" class="rounded-lg shadow-md w-full">
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <div class="scroll-card bg-gray-800 rounded-lg p-6 shadow-lg">
                     <h3 class="text-2xl font-semibold text-white mb-4">VBScript Suspicious Behavior Detection</h3>
                     <img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript Behavior Detection" class="rounded-lg shadow-md w-full">
                 </div>
-                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <div class="scroll-card bg-gray-800 rounded-lg p-6 shadow-lg">
                     <h3 class="text-2xl font-semibold text-white mb-4">Suspicious Xls File Detection</h3>
                     <img src="https://github.com/user-attachments/assets/466f89ab-4154-49f3-a921-a1675011fe3a" alt="Xls File Detection" class="rounded-lg shadow-md w-full">
                 </div>
@@ -283,7 +319,7 @@
                     </div>
                 </a>
                 <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTkSuQmCC" alt="EC-Council Logo" class="h-16 w-auto">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto">
                     <div class="mt-4">
                         <h3 class="text-lg font-semibold text-white">Ethical Hacking Essentials</h3>
                         <p class="text-sm text-gray-400 mt-1">EC-Council</p>
