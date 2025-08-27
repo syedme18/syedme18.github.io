@@ -9,38 +9,94 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            background-image: radial-gradient(rgba(129, 140, 248, 0.1) 1px, transparent 1px);
-            background-size: 2rem 2rem;
+            background-color: #0a0a14;
+            color: #e0e0e0;
             overflow-x: hidden;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
         }
 
-        .terminal-card {
-            background: rgba(13, 17, 23, 0.5);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid #30363d;
-            border-radius: 0.75rem;
+        .aurora-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .aurora-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.3;
+        }
+
+        .shape1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #7e57c2, transparent 60%);
+            top: -150px;
+            left: -150px;
+            animation: move1 20s infinite alternate ease-in-out;
+        }
+
+        .shape2 {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #42a5f5, transparent 60%);
+            bottom: -200px;
+            right: -200px;
+            animation: move2 25s infinite alternate ease-in-out;
+        }
+        
+        .shape3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ec407a, transparent 60%);
+            bottom: 50px;
+            left: 100px;
+            animation: move3 18s infinite alternate ease-in-out;
+        }
+
+        @keyframes move1 {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(200px, 100px) rotate(90deg); }
+        }
+        @keyframes move2 {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(-200px, -100px) rotate(-90deg); }
+        }
+        @keyframes move3 {
+            from { transform: translate(0, 0) rotate(0deg); }
+            to { transform: translate(100px, -150px) rotate(60deg); }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .terminal-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: #818cf8;
-            box-shadow: 0 0 30px rgba(129, 140, 248, 0.2);
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 0 40px rgba(126, 87, 194, 0.5);
+            border-color: rgba(255, 255, 255, 0.25);
         }
         
         .sticky-nav {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(13, 17, 23, 0.7);
+            background: rgba(10, 10, 20, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid #30363d;
+            border-bottom: 1px solid rgba(63, 63, 134, 0.5);
         }
         
         .section-header {
@@ -137,7 +193,11 @@
     </style>
 </head>
 <body>
-    <div class="grid-background"></div>
+    <div class="aurora-background">
+        <div class="aurora-shape shape1"></div>
+        <div class="aurora-shape shape2"></div>
+        <div class="aurora-shape shape3"></div>
+    </div>
 
     <!-- Sticky Navbar -->
     <nav class="sticky-nav">
@@ -188,18 +248,18 @@
         <section id="skills" class="py-12">
             <h2 class="section-header text-3xl font-bold text-center mb-10">SKILLS_MATRIX</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                <div class="terminal-card p-4 text-center">Information Security</div>
-                <div class="terminal-card p-4 text-center">Network Security</div>
-                <div class="terminal-card p-4 text-center">Incident Response</div>
-                <div class="terminal-card p-4 text-center">Malware Analysis</div>
-                <div class="terminal-card p-4 text-center">SIEM & SOAR</div>
-                <div class="terminal-card p-4 text-center">Threat Intelligence</div>
-                <div class="terminal-card p-4 text-center">IDS/IPS</div>
-                <div class="terminal-card p-4 text-center">Log Analysis</div>
-                <div class="terminal-card p-4 text-center">Vulnerability Management</div>
-                <div class="terminal-card p-4 text-center">Linux</div>
-                <div class="terminal-card p-4 text-center">Python</div>
-                <div class="terminal-card p-4 text-center">Bash</div>
+                <div class="glass-card p-4 text-center">Information Security</div>
+                <div class="glass-card p-4 text-center">Network Security</div>
+                <div class="glass-card p-4 text-center">Incident Response</div>
+                <div class="glass-card p-4 text-center">Malware Analysis</div>
+                <div class="glass-card p-4 text-center">SIEM & SOAR</div>
+                <div class="glass-card p-4 text-center">Threat Intelligence</div>
+                <div class="glass-card p-4 text-center">IDS/IPS</div>
+                <div class="glass-card p-4 text-center">Log Analysis</div>
+                <div class="glass-card p-4 text-center">Vulnerability Management</div>
+                <div class="glass-card p-4 text-center">Linux</div>
+                <div class="glass-card p-4 text-center">Python</div>
+                <div class="glass-card p-4 text-center">Bash</div>
             </div>
         </section>
 
@@ -209,7 +269,7 @@
             <div class="max-w-3xl mx-auto">
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="terminal-card p-6">
+                    <div class="glass-card p-6">
                         <h3 class="text-xl font-semibold text-white">SOC Automation Project</h3>
                         <p class="text-indigo-200 mt-2">Automating Security Operations Center tasks for efficiency.</p>
                         <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300">View Project &rarr;</a>
@@ -217,7 +277,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="terminal-card p-6">
+                    <div class="glass-card p-6">
                         <h3 class="text-xl font-semibold text-white">Splunk Enterprise Setup</h3>
                         <p class="text-indigo-200 mt-2">Guide for setting up Splunk and ingesting data for security analysis.</p>
                         <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300">View Project &rarr;</a>
@@ -225,7 +285,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="terminal-card p-6">
+                    <div class="glass-card p-6">
                         <h3 class="text-xl font-semibold text-white">Wazuh Installation Lab</h3>
                         <p class="text-indigo-200 mt-2">A comprehensive lab for Wazuh installation and agent deployment.</p>
                         <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300">View Project &rarr;</a>
@@ -233,7 +293,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="terminal-card p-6">
+                    <div class="glass-card p-6">
                         <h3 class="text-xl font-semibold text-white">Malware Analysis Lab Setup</h3>
                         <p class="text-indigo-200 mt-2">Setting up a secure, isolated environment for malware analysis.</p>
                         <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300">View Project &rarr;</a>
@@ -241,7 +301,7 @@
                 </div>
                  <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="terminal-card p-6">
+                    <div class="glass-card p-6">
                         <h3 class="text-xl font-semibold text-white">Active Directory Setup</h3>
                         <p class="text-indigo-200 mt-2">AD and Domain Controller setup in a virtual environment for lab testing.</p>
                         <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300">View Project &rarr;</a>
@@ -253,7 +313,7 @@
         <!-- Tools Section with Tabs -->
         <section id="tools" class="py-12">
             <h2 class="section-header text-3xl font-bold text-center mb-10">TOOL_CATALOG</h2>
-            <div class="w-full max-w-4xl mx-auto terminal-card p-6">
+            <div class="w-full max-w-4xl mx-auto glass-card p-6">
                 <!-- Tab Buttons -->
                 <div class="flex flex-wrap justify-center border-b border-white/10 mb-8">
                     <button class="tab-button active py-2 px-4 font-semibold rounded-t-lg transition-colors duration-300" onclick="openTab(event, 'network')">Network</button>
