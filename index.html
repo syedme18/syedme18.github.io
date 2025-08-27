@@ -1,168 +1,387 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Hassan | Cybersecurity Portfolio</title>
-<meta name="description" content="Syed Mohd Hassan — Cybersecurity student & defensive security enthusiast. Projects, tools, certifications, and SOC investigations." />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg: #0b0f17;
-  --card: #111827;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --accent: #22d3ee;
-  --radius: 18px;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-  --grid-gap: clamp(14px, 2vw, 22px);
-}
-*{box-sizing:border-box;}
-html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;scroll-behavior:smooth;}
-body{color:var(--text);background: radial-gradient(1200px 700px at 10% -10%, rgba(14,165,233,.15), transparent 60%), radial-gradient(900px 600px at 90% 10%, rgba(34,197,94,.12), transparent 60%), linear-gradient(180deg,var(--bg),#070a12);line-height:1.6;}
-
-header{
-  position: sticky; top:0; z-index:999; backdrop-filter: blur(10px);
-  background: linear-gradient(180deg, rgba(15,23,42,.95), rgba(15,23,42,.85));
-  border-bottom:1px solid rgba(148,163,184,.15);
-}
-.container{max-width:1100px;margin:0 auto;padding:0 18px;}
-.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);}
-.logo{width:42px;height:42px;border-radius:12px;background: radial-gradient(60% 60% at 30% 20%, rgba(34,211,238,.5), transparent), linear-gradient(135deg,#0ea5e9,#6366f1);box-shadow:0 8px 24px rgba(14,165,233,.35);}
-.brand span{font-weight:700;letter-spacing:.3px;}
-nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600;transition:color .3s;}
-nav a:hover{color:var(--accent);}
-
-.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--grid-gap);align-items:center;padding:48px 0 26px;}
-@media(max-width:900px){.hero{grid-template-columns:1fr;padding:28px 0;}.hero-gif{margin-top:20px;}}
-.card{background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid rgba(148,163,184,.16); border-radius: var(--radius); box-shadow: var(--shadow); transition: transform .3s ease, box-shadow .3s ease;}
-.card:hover{transform:scale(1.04);box-shadow:0 18px 36px rgba(0,0,0,.45);}
-h1{font-size: clamp(28px,4vw,44px);line-height:1.12;margin:0 0 12px;}
-.subtitle{color:var(--muted);font-size: clamp(14px,1.6vw,16px);margin:6px 0 18px;}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
-.btn{appearance:none;border:none;cursor:pointer;padding:12px 16px;border-radius:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;}
-.btn-primary{background:linear-gradient(135deg,#0ea5e9,#6366f1);color:white;box-shadow:0 12px 22px rgba(99,102,241,.28);}
-.btn-primary:hover{filter:brightness(1.05);}
-.btn-ghost{background:rgba(148,163,184,.12);color:var(--text);border:1px solid rgba(148,163,184,.18);}
-.btn-ghost:hover{background:rgba(148,163,184,.2);}
-
-section{padding:26px 0 8px;}
-.section-title{font-size:22px;margin:12px 0 18px;}
-.grid{display:grid;gap:var(--grid-gap);}
-
-#skills .badges{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;}
-#skills .badges img{width:100%;border-radius:10px;transition:transform .3s;}
-#skills .badges img:hover{transform:scale(1.2);}
-
-.projects{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:12px;}
-.project-card{padding:18px;transition:transform .3s ease,box-shadow .3s ease;}
-.project-card:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 16px 36px rgba(0,0,0,.4);}
-.project-card img{width:100%;border-radius:12px;margin-top:10px;transition:transform .3s;}
-.project-card img:hover{transform:scale(1.08);}
-
-#tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--grid-gap);}
-.tool-group{position:sticky;top:110px;background:var(--card);padding:18px;border-radius:var(--radius);border:1px solid rgba(148,163,184,.16);box-shadow:var(--shadow);}
-.tool-title{font-weight:800;color:#a5b4fc;margin-bottom:8px;}
-.tool-badges{display:flex;flex-wrap:wrap;gap:10px;}
-.tool-badges img{height:34px;border-radius:10px;border:1px solid rgba(148,163,184,.18);transition:transform .3s;}
-.tool-badges img:hover{transform:scale(1.2);}
-
-.reveal{opacity:0; transform: translateY(14px) scale(.98); filter: blur(2px);}
-.reveal.on{opacity:1; transform: translateY(0) scale(1); filter: blur(0); transition: all .7s cubic-bezier(.2,.7,.2,1);}
-
-.to-top{position:fixed;right:16px;bottom:16px;opacity:0;pointer-events:none;transition:opacity .25s ease;}
-.to-top.show{opacity:1;pointer-events:auto;}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Mohd Hassan - Cybersecurity Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background-color: rgba(17, 24, 39, 0.8);
+        }
+        .hero-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .smooth-transition {
+            transition: all 0.3s ease-in-out;
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s forwards;
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .skill-card, .cert-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-card:hover, .cert-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+        }
+        .tab-button.active {
+            background-color: #3b82f6; /* blue-600 */
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .logo-invert {
+            filter: brightness(0) invert(1);
+        }
+    </style>
 </head>
-<body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="#home"><div class="logo"></div><span>Hassan • Cybersecurity</span></a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#tools">Tools</a>
-      <a href="#soc">SOC Work</a>
-      <a href="#certs">Certifications</a>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Sticky Navbar -->
+    <nav class="sticky-nav shadow-lg">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Hassan's Portfolio</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#skills" class="text-gray-300 hover:text-white smooth-transition">Skills</a>
+                <a href="#projects" class="text-gray-300 hover:text-white smooth-transition">Projects</a>
+                <a href="#tools" class="text-gray-300 hover:text-white smooth-transition">Tools</a>
+                <a href="#investigations" class="text-gray-300 hover:text-white smooth-transition">Investigations</a>
+                <a href="#certifications" class="text-gray-300 hover:text-white smooth-transition">Certifications</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#skills" class="block text-gray-300 hover:text-white smooth-transition">Skills</a>
+            <a href="#projects" class="block text-gray-300 hover:text-white smooth-transition">Projects</a>
+            <a href="#tools" class="block text-gray-300 hover:text-white smooth-transition">Tools</a>
+            <a href="#investigations" class="block text-gray-300 hover:text-white smooth-transition">Investigations</a>
+            <a href="#certifications" class="block text-gray-300 hover:text-white smooth-transition">Certifications</a>
+        </div>
     </nav>
-  </div>
-</header>
 
-<main id="home" class="container">
-  <!-- Hero -->
-  <section class="hero">
-    <div class="card intro reveal">
-      <h1>Hi, I'm Hassan</h1>
-      <p class="subtitle">Final-year MCA student with strong CS foundation & growing cybersecurity expertise. Passionate about <b>Defensive Security</b>.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#">Connect on LinkedIn</a>
-        <a class="btn btn-ghost" href="#projects">View Projects</a>
-      </div>
-    </div>
-    <div class="hero-gif">
-      <img src="https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" alt="Tech GIF" style="max-width:100%;border-radius:12px;">
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <header class="container mx-auto px-6 py-16 text-center">
+        <div class="hero-card bg-gray-800 rounded-lg p-8 max-w-4xl mx-auto shadow-2xl smooth-transition section-fade-in">
+            <h1 class="text-5xl font-bold text-white">Hi, I'm Syed Mohd Hassan</h1>
+            <p class="mt-4 text-lg text-gray-400">
+                Final-year MCA student with a strong foundation in computer science and a growing expertise in cybersecurity. Passionate about Defensive Security, focused on identifying, analyzing, and mitigating security threats while continuously developing skills to protect digital environments.
+            </p>
+            <div class="mt-6">
+                <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 smooth-transition">
+                    Connect on LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
 
-  <!-- Skills -->
-  <section id="skills" class="reveal">
-    <h2 class="section-title">Skills 🛠</h2>
-    <div class="card">
-      <div class="badges">
-        <img src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Information Security" />
-        <img src="https://media.giphy.com/media/l0MYy6VHRQlVWRRbS/giphy.gif" alt="Network Security" />
-        <img src="https://media.giphy.com/media/xT1XGzqx1RkKXvlJ1G/giphy.gif" alt="Incident Response" />
-        <img src="https://media.giphy.com/media/3o7aD5tv1ogNBtDhDi/giphy.gif" alt="Malware Analysis" />
-      </div>
-    </div>
-  </section>
+    <main class="container mx-auto px-6 py-8">
 
-  <!-- Projects -->
-  <section id="projects" class="reveal">
-    <h2 class="section-title">Projects</h2>
-    <div class="grid projects">
-      <article class="card project-card">
-        <div class="project-title">SOC Automation Project</div>
-        <p class="muted">Windows 10 (Sysmon) • Wazuh • Shuffle • TheHive • DigitalOcean</p>
-        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="SOC GIF">
-        <div class="project-links"><a class="btn btn-primary" href="#">View Project</a></div>
-      </article>
-    </div>
-  </section>
+        <!-- Skills Section -->
+        <section id="skills" class="py-12 section-fade-in" style="animation-delay: 0.2s;">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">My Skills</h2>
+            <div class="flex flex-wrap justify-center items-center gap-4">
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Information Security</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Network Security</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Incident Response</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Malware Analysis</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">SIEM</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">SOAR</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Threat Intelligence</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">IDS/IPS</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Log Analysis</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Vulnerability Management</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Linux</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Python</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Bash</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">C/C++</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Communication</div>
+                <div class="skill-card bg-gray-800 rounded-lg px-4 py-2 text-sm font-semibold">Critical Thinking</div>
+            </div>
+        </section>
 
-  <!-- Tools -->
-  <section id="tools" class="reveal">
-    <h2 class="section-title">Tools</h2>
-    <div class="tool-group">
-      <div class="tool-title">Network</div>
-      <div class="tool-badges">
-        <img src="https://media.giphy.com/media/3o7TKx4EoHP6r2v4gi/giphy.gif" alt="Wireshark" />
-        <img src="https://media.giphy.com/media/3o7TKzKqkVVzVLbzVe/giphy.gif" alt="Fiddler" />
-      </div>
-    </div>
-    <div class="tool-group">
-      <div class="tool-title">Endpoint</div>
-      <div class="tool-badges">
-        <img src="https://media.giphy.com/media/3o7TKVvXTVG58wN8aQ/giphy.gif" alt="Wazuh" />
-      </div>
-    </div>
-  </section>
-</main>
+        <!-- Projects Section -->
+        <section id="projects" class="py-12 section-fade-in" style="animation-delay: 0.4s;">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-2xl smooth-transition transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-white">SOC Automation Project</h3>
+                    <p class="text-gray-400 mt-2">Automating Security Operations Center tasks for efficiency.</p>
+                    <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-blue-400 hover:text-blue-300 smooth-transition">View Project &rarr;</a>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-2xl smooth-transition transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-white">Splunk Enterprise Setup</h3>
+                    <p class="text-gray-400 mt-2">Guide for setting up Splunk and ingesting data.</p>
+                    <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-blue-400 hover:text-blue-300 smooth-transition">View Project &rarr;</a>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-2xl smooth-transition transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-white">Wazuh Installation Lab</h3>
+                    <p class="text-gray-400 mt-2">A lab for Wazuh installation and agent deployment.</p>
+                    <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-blue-400 hover:text-blue-300 smooth-transition">View Project &rarr;</a>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-2xl smooth-transition transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-white">Malware Analysis Lab Setup</h3>
+                    <p class="text-gray-400 mt-2">Setting up a secure environment for malware analysis.</p>
+                    <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-blue-400 hover:text-blue-300 smooth-transition">View Project &rarr;</a>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg hover:shadow-2xl smooth-transition transform hover:-translate-y-2">
+                    <h3 class="text-xl font-semibold text-white">Active Directory Setup</h3>
+                    <p class="text-gray-400 mt-2">AD and Domain Controller setup in a virtual environment.</p>
+                    <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-blue-400 hover:text-blue-300 smooth-transition">View Project &rarr;</a>
+                </div>
+            </div>
+        </section>
 
-<a href="#home" class="btn btn-primary to-top">↑ Top</a>
+        <!-- Tools Section with Tabs -->
+        <section id="tools" class="py-12 section-fade-in" style="animation-delay: 0.6s;">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">Tools I Use</h2>
+            <div class="w-full max-w-4xl mx-auto">
+                <!-- Tab Buttons -->
+                <div class="flex flex-wrap justify-center border-b border-gray-700 mb-8">
+                    <button class="tab-button active py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'network')">Network</button>
+                    <button class="tab-button py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'endpoint')">Endpoint</button>
+                    <button class="tab-button py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'siem')">SIEM</button>
+                    <button class="tab-button py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'soar')">SOAR</button>
+                    <button class="tab-button py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'offensive')">Offensive Security</button>
+                    <button class="tab-button py-2 px-4 text-gray-300 font-semibold smooth-transition" onclick="openTab(event, 'malware')">Malware Analysis</button>
+                </div>
 
-<script>
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){entry.target.classList.add('on');io.unobserve(entry.target);}
-  });
-},{threshold:.18});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+                <!-- Tab Content -->
+                <div id="network" class="tab-content active bg-gray-800/50 p-6 rounded-lg">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Wireshark-1679A7?&style=for-the-badge&logo=Wireshark&logoColor=white" alt="Wireshark">
+                            <p class="text-sm text-gray-400 mt-2">A network protocol analyzer for traffic inspection.</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Fiddler-9C1A1A?&style=for-the-badge&logo=Fiddler&logoColor=white" alt="Fiddler">
+                            <p class="text-sm text-gray-400 mt-2">A web debugging proxy for capturing HTTP/S traffic.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="endpoint" class="tab-content bg-gray-800/50 p-6 rounded-lg">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh">
+                            <p class="text-sm text-gray-400 mt-2">An open-source security platform for threat detection.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="siem" class="tab-content bg-gray-800/50 p-6 rounded-lg">
+                     <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Splunk-000000?&style=for-the-badge&logo=Splunk&logoColor=white" alt="Splunk">
+                            <p class="text-sm text-gray-400 mt-2">A platform for searching, monitoring, and analyzing machine-generated data.</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Wazuh-00008B?&style=for-the-badge&logo=Wazuh&logoColor=white" alt="Wazuh">
+                            <p class="text-sm text-gray-400 mt-2">Used as a SIEM for log analysis and security event correlation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="soar" class="tab-content bg-gray-800/50 p-6 rounded-lg">
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                            <img src="https://img.shields.io/badge/-Shuffle-4169E1?&style=for-the-badge&logoColor=white" alt="Shuffle">
+                            <p class="text-sm text-gray-400 mt-2">An open-source SOAR platform for automating security workflows.</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="offensive" class="tab-content bg-gray-800/50 p-6 rounded-lg">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                       <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                           <img src="https://img.shields.io/badge/-Metasploit-2A2F39?&style=for-the-badge&logo=Metasploit&logoColor=white" alt="Metasploit">
+                           <p class="text-sm text-gray-400 mt-2">A penetration testing framework for exploiting vulnerabilities.</p>
+                       </div>
+                       <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                           <img src="https://img.shields.io/badge/-Nmap-4682B4?&style=for-the-badge&logo=Nmap&logoColor=white" alt="Nmap">
+                           <p class="text-sm text-gray-400 mt-2">A network scanner for discovering hosts and services.</p>
+                       </div>
+                       <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600">
+                           <img src="https://img.shields.io/badge/-BeEF-F77400?&style=for-the-badge&logoColor=white" alt="BeEF">
+                           <p class="text-sm text-gray-400 mt-2">A browser exploitation framework for web security testing.</p>
+                       </div>
+                    </div>
+                </div>
+                <div id="malware" class="tab-content bg-gray-800/50 p-6 rounded-lg">
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-REMnux-2A2F39?&style=for-the-badge&logoColor=white" alt="REMnux"><p class="text-sm text-gray-400 mt-2">A Linux toolkit for reverse-engineering and analyzing malware.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-ProcMon-4682B4?&style=for-the-badge&logoColor=white" alt="ProcMon"><p class="text-sm text-gray-400 mt-2">Monitors file system, Registry, and process/thread activity.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-PEStudio-FFA500?&style=for-the-badge&logoColor=white" alt="PEStudio"><p class="text-sm text-gray-400 mt-2">Performs static analysis of executable files.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-HxD-FF4500?&style=for-the-badge&logoColor=white" alt="HxD"><p class="text-sm text-gray-400 mt-2">A fast hex editor for raw disk editing and file inspection.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-Sysinternals_Suite-008080?&style=for-the-badge&logoColor=white" alt="Sysinternals Suite"><p class="text-sm text-gray-400 mt-2">A suite of tools for managing and troubleshooting Windows systems.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-ANY.RUN-DC143C?&style=for-the-badge&logoColor=white" alt="ANY.RUN"><p class="text-sm text-gray-400 mt-2">An interactive online malware analysis sandbox.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-VirusTotal-4E9A06?&style=for-the-badge&logoColor=white" alt="VirusTotal"><p class="text-sm text-gray-400 mt-2">Online service that analyzes files and URLs for malware.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-FlareVM-6B8E23?&style=for-the-badge&logoColor=white" alt="FlareVM"><p class="text-sm text-gray-400 mt-2">A Windows-based security distribution for malware analysis.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-Regshot-FFD700?&style=for-the-badge&logoColor=white" alt="Regshot"><p class="text-sm text-gray-400 mt-2">A registry comparison utility for analyzing system changes.</p></div>
+                        <div class="bg-gray-700 p-4 rounded-lg smooth-transition hover:bg-gray-600"><img src="https://img.shields.io/badge/-Process_Hacker-00CED1?&style=for-the-badge&logoColor=white" alt="Process Hacker"><p class="text-sm text-gray-400 mt-2">An advanced tool for monitoring system resources and processes.</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-const topBtn=document.querySelector('.to-top');
-window.addEventListener('scroll',()=>{if(window.scrollY>420)topBtn.classList.add('show');else topBtn.classList.remove('show');});
-</script>
+        <!-- Investigations Section -->
+        <section id="investigations" class="py-12 section-fade-in" style="animation-delay: 0.8s;">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">Hands-On SOC Investigations</h2>
+            <div class="space-y-12">
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Possible SQL Injection Payload Detection</h3>
+                    <img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQL Injection Detection" class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-2xl font-semibold text-white mb-4">VBScript Suspicious Behavior Detection</h3>
+                    <img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript Behavior Detection" class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                    <h3 class="text-2xl font-semibold text-white mb-4">Suspicious Xls File Detection</h3>
+                    <img src="https://github.com/user-attachments/assets/466f89ab-4154-49f3-a921-a1675011fe3a" alt="Xls File Detection" class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-12 section-fade-in" style="animation-delay: 1s;">
+            <h2 class="text-4xl font-bold text-center text-white mb-10">Certifications</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend Logo" class="h-16 w-auto rounded-full">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">SOC Analyst Learning Path</h3>
+                        <p class="text-sm text-gray-400 mt-1">LetsDefend</p>
+                    </div>
+                </a>
+                 <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Google Cybersecurity Professional</h3>
+                        <p class="text-sm text-gray-400 mt-1">Google</p>
+                    </div>
+                </a>
+                <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTkSuQmCC" alt="EC-Council Logo" class="h-16 w-auto">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Ethical Hacking Essentials</h3>
+                        <p class="text-sm text-gray-400 mt-1">EC-Council</p>
+                    </div>
+                </a>
+                <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-16 w-auto logo-invert">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Network Communication Fundamentals</h3>
+                        <p class="text-sm text-gray-400 mt-1">Coursera</p>
+                    </div>
+                </a>
+                <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="h-16 w-auto logo-invert">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Intro to Linux & Shell</h3>
+                        <p class="text-sm text-gray-400 mt-1">IBM / Coursera</p>
+                    </div>
+                </a>
+                <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy Logo" class="h-16 w-auto logo-invert">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Ethical Hacking From Scratch</h3>
+                        <p class="text-sm text-gray-400 mt-1">Udemy</p>
+                    </div>
+                </a>
+                <a href="https://lnkd.in/gHFsZ4bG" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <svg class="w-16 h-16 text-white" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" fill="currentColor"/></svg>
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Splunk for Security Analytics</h3>
+                        <p class="text-sm text-gray-400 mt-1">LinkedIn Learning</p>
+                    </div>
+                </a>
+                <a href="https://coursera.org/verify/QFJHJRD3UMXZ" target="_blank" class="cert-card bg-gray-800 rounded-lg p-6 flex flex-col items-center justify-between text-center">
+                    <img src="data:image/jpeg;base64,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" alt="Splunk Logo" class="h-16 w-auto logo-invert">
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-white">Splunk 101</h3>
+                        <p class="text-sm text-gray-400 mt-1">Splunk / Coursera</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 mt-12">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-400">
+            <p>&copy; 2024 Syed Mohd Hassan. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-button').onclick = function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        };
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetElement = document.querySelector(this.getAttribute('href'));
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, // Adjust for sticky nav height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add fade-in animation to sections on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('section-fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Tab functionality for Tools section
+        function openTab(event, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+    </script>
+
 </body>
 </html>
