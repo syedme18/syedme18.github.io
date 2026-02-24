@@ -207,6 +207,7 @@
             margin-right: 0.5rem;
             font-weight: bold;
         }
+        .logo-invert { filter: brightness(0) invert(1); }
     </style>
 </head>
 <body>
@@ -214,7 +215,7 @@
 
     <nav class="sticky-nav">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-white tracking-wider">Portfolio</a>
+            <a href="#" class="text-xl font-bold text-white tracking-wider">My Portfolio</a>
             <div class="hidden md:flex space-x-6 items-center text-sm font-medium text-slate-400">
                 <a href="#experience" class="hover:text-white transition-colors duration-300">Experience</a>
                 <a href="#metrics" class="hover:text-white transition-colors duration-300">Metrics</a>
@@ -234,12 +235,12 @@
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 text-sm">
             <a href="#experience" class="block text-gray-400 hover:text-white">Experience</a>
             <a href="#metrics" class="block text-gray-400 hover:text-white">Metrics</a>
-            <a href="#skills" class="block text-gray-400 hover:text-white">Skills</a>
-            <a href="#projects" class="block text-gray-400 hover:text-white">Projects</a>
-            <a href="#tools" class="block text-gray-400 hover:text-white">Tools</a>
-            <a href="#investigations" class="block text-gray-400 hover:text-white">Investigations</a>
-            <a href="#certifications" class="block text-gray-400 hover:text-white">Certifications</a>
-            <a href="#contact" class="block text-gray-400 hover:text-white">Contact</a>
+            <a href="#skills" class="block text-gray-400 hover:text-white transition-colors duration-300">Skills</a>
+            <a href="#projects" class="block text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
+            <a href="#tools" class="block text-gray-400 hover:text-white transition-colors duration-300">Tools</a>
+            <a href="#investigations" class="block text-gray-400 hover:text-white transition-colors duration-300">Investigations</a>
+            <a href="#certifications" class="block text-gray-400 hover:text-white transition-colors duration-300">Certifications</a>
+            <a href="#contact" class="block text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
         </div>
     </nav>
 
@@ -329,6 +330,77 @@
             </div>
         </section>
 
+        <!-- Skills Section -->
+        <section id="skills" class="py-12">
+            <h2 class="section-header text-3xl font-bold text-center mb-10">Technical Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                <div class="glass-card p-4 text-center font-medium text-white">Information Security</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Network Security</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Incident Response</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Malware Analysis</div>
+                <div class="glass-card p-4 text-center font-medium text-white">SIEM & SOAR</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Threat Intelligence</div>
+                <div class="glass-card p-4 text-center font-medium text-white">IDS/IPS</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Log Analysis</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Vulnerability Management</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Linux</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Python</div>
+                <div class="glass-card p-4 text-center font-medium text-white">Bash</div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-12">
+            <h2 class="section-header text-3xl font-bold text-center mb-12">PERSONAL PROJECTS</h2>
+            <div class="max-w-3xl mx-auto">
+                <!-- Extract: SOC Automation Project -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-semibold text-white">SOC Automation Project</h3>
+                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.</p>
+                        <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Extract: Splunk Enterprise Setup -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-semibold text-white">Splunk Enterprise Setup</h3>
+                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Guide for setting up Splunk and ingesting data for deep security analysis and visibility.</p>
+                        <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Extract: Wazuh Installation Lab -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-semibold text-white">Wazuh Installation Lab</h3>
+                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.</p>
+                        <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Extract: Malware Analysis Lab Setup -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-semibold text-white">Malware Analysis Lab Setup</h3>
+                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Setting up a secure, isolated environment for malware analysis using specialized toolsets.</p>
+                        <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                    </div>
+                </div>
+                <!-- Extract: Active Directory Setup -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-xl font-semibold text-white">Active Directory Setup</h3>
+                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">AD and Domain Controller setup in a virtual environment for identity management practice.</p>
+                        <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- Tools Section -->
         <section id="tools" class="py-12">
             <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL_CATALOG</h2>
@@ -545,16 +617,15 @@
     </main>
 
     <footer id="contact" class="bg-transparent mt-12 pb-12">
-        <div class="container mx-auto px-6 py-12">
-            <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">GET IN TOUCH</h2>
-            <div class="glass-card max-w-2xl mx-auto p-8 text-center">
-                <p class="text-center text-indigo-200 mb-6 text-sm">I'm always open to discussing new opportunities and challenges in cybersecurity. Feel free to reach out!</p>
+        <div class="container mx-auto px-6 py-12 text-center">
+            <h2 class="section-header text-3xl font-bold mb-10 uppercase">GET IN TOUCH</h2>
+            <div class="glass-card max-w-2xl mx-auto p-10">
                 <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"></div>
-                        <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"></div>
+                        <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                        <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
                     </div>
-                    <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"></textarea></div>
+                    <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
                     <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest">TRANSMIT_MESSAGE</button></div>
                     <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
                 </form>
@@ -568,7 +639,7 @@
     </button>
 
     <script>
-        // Background Mesh Animation
+        // Live Background - Network Mesh
         const canvas = document.getElementById('cyber-bg');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
@@ -624,7 +695,6 @@
         window.addEventListener('resize', init);
         init(); animate();
 
-        // UI Interactions
         document.getElementById('mobile-menu-button').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
 
         const observer = new IntersectionObserver((entries) => {
