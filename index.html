@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Syed Mohd Hassan - Cybersecurity Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -208,431 +208,531 @@
             font-weight: bold;
         }
         .logo-invert { filter: brightness(0) invert(1); }
+
+        /* Recruiter Mode Styling */
+        #recruiter-toggle.active {
+            background-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+            color: white;
+            border-color: #10b981;
+        }
+        #mobile-recruiter-toggle.active {
+            background-color: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .mode-transition {
+            transition: all 0.4s ease;
+        }
+
+        /* Professional Welcome Popup - Updated */
+        #welcome-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            z-index: 200;
+            background: transparent;
+            color: #10b981;
+            padding: 2.5rem 5rem;
+            border-radius: 2rem;
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: 0.2em;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            text-align: center;
+            white-space: nowrap;
+        }
+        #welcome-popup.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Backdrop Blur Container */
+        #content-wrapper {
+            transition: filter 0.5s ease;
+        }
+        .professionally-blurred {
+            filter: blur(15px) brightness(0.6);
+        }
     </style>
 </head>
 <body>
     <canvas id="cyber-bg"></canvas>
 
-    <nav class="sticky-nav">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-white tracking-wider">Portfolio</a>
-            <div class="hidden md:flex space-x-6 items-center text-sm font-medium text-slate-400">
-                <a href="#experience" class="hover:text-white transition-colors duration-300">Experience</a>
-                <a href="#metrics" class="hover:text-white transition-colors duration-300">Metrics</a>
-                <a href="#skills" class="hover:text-white transition-colors duration-300">Skills</a>
-                <a href="#projects" class="hover:text-white transition-colors duration-300">Projects</a>
-                <a href="#tools" class="hover:text-white transition-colors duration-300">Tools</a>
-                <a href="#investigations" class="hover:text-white transition-colors duration-300">Investigations</a>
-                <a href="#certifications" class="hover:text-white transition-colors duration-300">Certifications</a>
-                <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 text-sm">
-            <a href="#experience" class="block text-gray-400 hover:text-white">Experience</a>
-            <a href="#metrics" class="block text-gray-400 hover:text-white">Metrics</a>
-            <a href="#skills" class="block text-gray-400 hover:text-white transition-colors duration-300">Skills</a>
-            <a href="#projects" class="block text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
-            <a href="#tools" class="block text-gray-400 hover:text-white transition-colors duration-300">Tools</a>
-            <a href="#investigations" class="block text-gray-400 hover:text-white transition-colors duration-300">Investigations</a>
-            <a href="#certifications" class="block text-gray-400 hover:text-white transition-colors duration-300">Certifications</a>
-            <a href="#contact" class="block text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
-        </div>
-    </nav>
+    <div id="welcome-popup">WELCOME RECRUITER</div>
 
-    <header class="container mx-auto px-6 py-24 text-center flex flex-col items-center">
-        <div class="typewriter max-w-2xl">
-            <h1 class="text-4xl md:text-5xl font-bold text-white">Syed Mohd Hassan</h1>
-        </div>
-        <p class="mt-4 text-lg text-gray-300 max-w-3xl leading-relaxed">
-            Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. 
-            Passionate about <span class="text-indigo-400 font-semibold">Defensive Security</span>, focusing on threat identification and incident response.
-        </p>
-        <div class="mt-8 flex flex-wrap justify-center gap-4">
-            <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105">
-                Connect on LinkedIn
-            </a>
-            <a href="https://app.letsdefend.io/user/syedme18" target="_blank" class="inline-block bg-white/10 text-white font-semibold px-6 py-3 rounded-md border border-white/20 hover:bg-[#0d1117] transition-all duration-300 shadow-sm transform hover:scale-105">
-                LetsDefend Profile
-            </a>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-8">
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase">Professional_Experience</h2>
-            <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500">
-                <div class="flex flex-col md:flex-row justify-between mb-6">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white">Soc Analyst Intern</h3>
-                        <p class="text-indigo-400 font-mono">Techensglobal | Bengaluru – Karnataka</p>
-                    </div>
-                    <div class="mt-2 md:mt-0">
-                        <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-sm font-mono italic">Dec 2024 – Present</span>
-                    </div>
+    <!-- Wrap all content for blur effect -->
+    <div id="content-wrapper">
+        <nav class="sticky-nav">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-white tracking-wider">Portfolio</a>
+                <div class="hidden lg:flex space-x-6 items-center text-sm font-medium text-slate-400">
+                    <a href="#experience" class="hover:text-white transition-colors duration-300">Experience</a>
+                    <a href="#metrics" class="hover:text-white transition-colors duration-300">Metrics</a>
+                    <a href="#skills" class="hover:text-white transition-colors duration-300">Skills</a>
+                    <a href="#projects" class="hover:text-white transition-colors duration-300">Projects</a>
+                    <a href="#tools" class="hover:text-white transition-colors duration-300">Tools</a>
+                    <a href="#investigations" class="hover:text-white transition-colors duration-300">Investigations</a>
+                    <a href="#certifications" class="hover:text-white transition-colors duration-300">Certifications</a>
+                    <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+                    
+                    <button id="recruiter-toggle" onclick="toggleRecruiterMode()" class="flex items-center gap-2 px-5 py-2 border border-indigo-500/50 rounded-full text-indigo-400 hover:bg-indigo-500/10 transition-all duration-300 font-bold whitespace-nowrap">
+                        Recruiter Mode
+                    </button>
                 </div>
-                <ul class="space-y-4 text-gray-300">
-                    <li class="exp-bullet">Monitored security events and incidents for 5+ client environments simultaneously in a Managed SOC setup, ensuring continuous threat detection and response.</li>
-                    <li class="exp-bullet">Worked with SIEM and security tools including <span class="text-white font-semibold">Elastic Stack, CrowdStrike Falcon, Microsoft Sentinel, and WatchGuard EDR</span> to analyze logs and investigate alerts.</li>
-                    <li class="exp-bullet">Investigated alerts from multiple sources such as firewalls, Azure AD, cloud applications, and endpoint security tools.</li>
-                    <li class="exp-bullet">Created and delivered security reports summarizing incidents, trends, and risk posture for stakeholders.</li>
-                    <li class="exp-bullet">Performed log analysis, event correlation, and basic threat hunting across network and cloud environments.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- SOC Operational Metrics Section -->
-        <section id="metrics" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase tracking-widest">SOC OPERATIONAL METRICS</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                <div class="glass-card p-6 border-t-2 border-blue-500">
-                    <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Environment Load</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">5+</span>
-                        <span class="text-slate-400 text-xs font-mono">Clients</span>
-                    </div>
-                    <p class="text-slate-500 text-xs mt-3 leading-tight italic">Managed concurrently across 8h shifts.</p>
-                </div>
-                <div class="glass-card p-6 border-t-2 border-purple-500">
-                    <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Alerts / Day</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">150+</span>
-                        <span class="text-slate-400 text-xs font-mono">In-Shift</span>
-                    </div>
-                    <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                        <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="glass-card p-6 border-t-2 border-emerald-500">
-                    <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Reported Alerts</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">8-10</span>
-                        <span class="text-slate-400 text-xs font-mono">Validated</span>
-                    </div>
-                    <p class="text-slate-500 text-xs mt-3 leading-tight italic">High-fidelity incidents escalated.</p>
-                </div>
-                <div class="glass-card p-6 border-t-2 border-pink-500">
-                    <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Response SLA</p>
-                    <div class="flex items-baseline gap-2">
-                        <span class="text-4xl font-bold text-white">100%</span>
-                        <span class="text-green-400 text-xs font-mono">Reliability</span>
-                    </div>
-                    <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                        <div class="h-full bg-pink-500 rounded-full" style="width: 100%"></div>
-                    </div>
+                <div class="lg:hidden flex items-center gap-4">
+                    <button id="mobile-recruiter-toggle" onclick="toggleRecruiterMode()" class="text-xs px-2 py-1 border border-indigo-500/50 rounded-md text-indigo-400">Recruiter Mode</button>
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
                 </div>
             </div>
-        </section>
-
-        <!-- Skills Section -->
-        <section id="skills" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center mb-10">Technical Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                <div class="glass-card p-4 text-center font-medium text-white">Information Security</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Network Security</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Incident Response</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Malware Analysis</div>
-                <div class="glass-card p-4 text-center font-medium text-white">SIEM & SOAR</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Threat Intelligence</div>
-                <div class="glass-card p-4 text-center font-medium text-white">IDS/IPS</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Log Analysis</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Vulnerability Management</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Linux</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Python</div>
-                <div class="glass-card p-4 text-center font-medium text-white">Bash</div>
+            <div id="mobile-menu" class="hidden lg:hidden px-6 pb-4 space-y-2 text-sm">
+                <a href="#experience" class="block text-gray-400 hover:text-white">Experience</a>
+                <a href="#metrics" class="block text-gray-400 hover:text-white">Metrics</a>
+                <a href="#skills" class="block text-gray-400 hover:text-white transition-colors duration-300">Skills</a>
+                <a href="#projects" class="block text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
+                <a href="#tools" class="block text-gray-400 hover:text-white transition-colors duration-300">Tools</a>
+                <a href="#investigations" class="block text-gray-400 hover:text-white transition-colors duration-300">Investigations</a>
+                <a href="#certifications" class="block text-gray-400 hover:text-white transition-colors duration-300">Certifications</a>
+                <a href="#contact" class="block text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
             </div>
-        </section>
+        </nav>
 
-        <!-- Projects Section -->
-        <section id="projects" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center mb-12">PERSONAL PROJECTS</h2>
-            <div class="max-w-3xl mx-auto">
-                <!-- Extract: SOC Automation Project -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card p-6">
-                        <h3 class="text-xl font-semibold text-white">SOC Automation Project</h3>
-                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.</p>
-                        <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Extract: Splunk Enterprise Setup -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card p-6">
-                        <h3 class="text-xl font-semibold text-white">Splunk Enterprise Setup</h3>
-                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Guide for setting up Splunk and ingesting data for deep security analysis and visibility.</p>
-                        <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Extract: Wazuh Installation Lab -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card p-6">
-                        <h3 class="text-xl font-semibold text-white">Wazuh Installation Lab</h3>
-                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.</p>
-                        <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Extract: Malware Analysis Lab Setup -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card p-6">
-                        <h3 class="text-xl font-semibold text-white">Malware Analysis Lab Setup</h3>
-                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">Setting up a secure, isolated environment for malware analysis using specialized toolsets.</p>
-                        <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
-                    </div>
-                </div>
-                <!-- Extract: Active Directory Setup -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="glass-card p-6">
-                        <h3 class="text-xl font-semibold text-white">Active Directory Setup</h3>
-                        <p class="text-indigo-200 mt-2 text-sm leading-relaxed">AD and Domain Controller setup in a virtual environment for identity management practice.</p>
-                        <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
-                    </div>
-                </div>
+        <header class="container mx-auto px-6 py-24 text-center flex flex-col items-center">
+            <div class="typewriter max-w-2xl">
+                <h1 class="text-4xl md:text-5xl font-bold text-white">Syed Mohd Hassan</h1>
             </div>
-        </section>
-        
-        <!-- Tools Section -->
-        <section id="tools" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL_CATALOG</h2>
-            <div class="w-full max-w-6xl mx-auto glass-card p-8">
-                <div class="flex flex-wrap justify-center border-b border-white/10 mb-10 pb-4 gap-3">
-                    <button class="tab-button active transition-all duration-300" onclick="openTab(event, 'network')">Network</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'endpoint')">Endpoint</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'siem')">SIEM</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'soar')">SOAR</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'offensive')">Offensive</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'malware')">Malware</button>
-                    <button class="tab-button transition-all duration-300" onclick="openTab(event, 'threatintel')">Threat Intel</button>
-                </div>
-
-                <!-- Network Tab -->
-                <div id="network" class="tab-content active">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                            <h3 class="text-white font-bold">Wireshark</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div>
-                            <h3 class="text-white font-bold">Fiddler</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Endpoint Tab -->
-                <div id="endpoint" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                            <h3 class="text-white font-bold">Wazuh</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                            <h3 class="text-white font-bold">WatchGuard</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                            <h3 class="text-white font-bold">CrowdStrike</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SIEM Tab -->
-                <div id="siem" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                            <h3 class="text-white font-bold">Elastic Stack</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                            <h3 class="text-white font-bold">Sentinel</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M9 9l3 3 4-4"/></svg></div>
-                            <h3 class="text-white font-bold">Splunk</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- SOAR Tab -->
-                <div id="soar" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4l3 3-3 3M6 20l-3-3 3-3"/><path d="M3 17h12a3 3 0 0 0 3-3V4M21 7H9a3 3 0 0 0-3 3v10"/></svg></div>
-                            <h3 class="text-white font-bold">Shuffle</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Offensive Tab -->
-                <div id="offensive" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                            <h3 class="text-white font-bold">Metasploit</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg></div>
-                            <h3 class="text-white font-bold">Nmap</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                            <h3 class="text-white font-bold">BeEF</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Malware Tab -->
-                <div id="malware" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17.07l.07.06A6 6 0 0 1 10 15h4a6 6 0 0 1 4.93 4.13l.07-.06A10 10 0 0 0 12 2z"/></svg></div>
-                            <h3 class="text-white font-bold">REMnux</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
-                            <h3 class="text-white font-bold">ProcMon</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                            <h3 class="text-white font-bold">PEStudio</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 9h6M9 12h6M9 15h6"/></svg></div>
-                            <h3 class="text-white font-bold">HxD</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg></div>
-                            <h3 class="text-white font-bold">Sysinternals</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                            <h3 class="text-white font-bold">FlareVM</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Threat Intel Tab -->
-                <div id="threatintel" class="tab-content">
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                            <h3 class="text-white font-bold">VirusTotal</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                            <h3 class="text-white font-bold">ANY.RUN</h3>
-                        </div>
-                        <div class="tool-card">
-                            <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-                            <h3 class="text-white font-bold">Hybrid Analysis</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Investigations Section -->
-        <section id="investigations" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">SOC INVESTIGATIONS</h2>
-            <p class="max-w-4xl mx-auto text-gray-400 text-center mb-8 leading-relaxed text-sm">
-                In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats.
+            <p class="mt-4 text-lg text-gray-300 max-w-3xl leading-relaxed mode-transition" 
+               id="hero-desc"
+               data-tech="Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. Passionate about Defensive Security, focusing on threat identification and incident response."
+               data-biz="Strategic Cybersecurity professional specialized in organizational risk mitigation and asset protection. Dedicated to maintaining business continuity through proactive threat management and resilient security architecture.">
+                Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. 
+                Passionate about <span class="text-indigo-400 font-semibold">Defensive Security</span>, focusing on threat identification and incident response.
             </p>
-            <div class="horizontal-scroll-container">
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SQL Injection Payload Detection</h3><img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQL Injection Detection" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">VBScript Suspicious Behavior</h3><img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript Behavior Detection" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Suspicious XLS File Detection</h3><img src="https://github.com/user-attachments/assets/466f89ab-4154-49f3-a921-a1675011fe3a" alt="Xls File Detection" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">RDP Brute-Force Attack Detected</h3><img src="Screenshot 2025-11-02 005126.png" alt="RDP Brute-Force Detection" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Lumma Stealer Analysis</h3><img src="https://github.com/user-attachments/assets/05921650-c7ca-47a3-bab0-6258b5e3644a" alt="Lumma Stealer" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Possible LFI Attack</h3><img src="https://github.com/user-attachments/assets/e3c78e11-14b7-49e9-b38e-5219d54c5053" alt="LFI Attack" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Checkpoint Arbitrary File Read</h3><img src="https://github.com/user-attachments/assets/bd0cdd29-2598-411a-8111-9ed30b3e2ee3" alt="CVE-2024-24919" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SharePoint ToolShell RCE</h3><img src="https://github.com/user-attachments/assets/6cdec6bd-0bfd-4e92-81fa-2135a78130a1" alt="CVE‑2025‑53770" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Possible IDOR Attack Detected</h3><img src="https://github.com/user-attachments/assets/4f886b49-4412-481e-b2ae-57a6a3ca131f" alt="IDOR Attack" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">LS Command Detected in URL</h3><img src="https://github.com/user-attachments/assets/bf167634-0ea1-4d35-9c86-db58ba88c066" alt="LS Command Detected" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Whoami Command in Body</h3><img src="https://github.com/user-attachments/assets/63a3a97a-5834-4f05-baf9-eb40602cefd2" alt="Whoami Detected" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SQL Injection Detected</h3><img src="https://github.com/user-attachments/assets/5c0eb5f2-bd84-4fc9-93d3-4f415415ae61" alt="SQL Injection" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Windows OLE Zero-Click RCE</h3><img src="https://github.com/user-attachments/assets/c155c4c7-0bff-44fa-bab7-c15302665fc9" alt="Zero-Click RCE" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">CVE-2024-49138 Detected</h3><img src="https://github.com/user-attachments/assets/299b7ec1-40d4-4a5f-8acb-fcdde802d035" alt="CVE-2024-49138" class="rounded-lg w-full mt-auto"></div>
-                <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Domain MX Record Change</h3><img src="https://github.com/user-attachments/assets/c38bbed9-ccfc-40d0-8796-3c57f3550f71" alt="MX Record Change" class="rounded-lg w-full mt-auto"></div>
-            </div>
-        </section>
-
-        <!-- Certifications Section -->
-        <section id="certifications" class="py-12">
-            <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">Certifications</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-                <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
-                    <h3 class="font-bold text-white">SOC Analyst Path</h3>
-                    <p class="text-sm text-indigo-300">LetsDefend</p>
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105">
+                    Connect on LinkedIn
                 </a>
-                <a href="https://app.letsdefend.io/certificate/show/821ba41a-9a87-448b-87ae-14458ea1cfeb" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
-                    <h3 class="font-bold text-white">Malware Analysis Path</h3>
-                    <p class="text-sm text-indigo-300">LetsDefend</p>
-                </a>
-                <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto mb-4">
-                    <h3 class="font-bold text-white">Google Cybersecurity</h3>
-                    <p class="text-sm text-indigo-300">Google</p>
-                </a>
-                <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
-                    <h3 class="font-bold text-white">Ethical Hacking</h3>
-                    <p class="text-sm text-indigo-300">EC-Council</p>
-                </a>
-                <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-12 w-auto mb-4 logo-invert">
-                    <h3 class="font-bold text-white">Network Comm</h3>
-                    <p class="text-sm text-indigo-300">Coursera</p>
-                </a>
-                <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="h-12 w-auto mb-4 logo-invert">
-                    <h3 class="font-bold text-white">Intro to Linux</h3>
-                    <p class="text-sm text-indigo-300">IBM / Coursera</p>
-                </a>
-                <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy Logo" class="h-12 w-auto mb-4 logo-invert">
-                    <h3 class="font-bold text-white">Ethical Hacking</h3>
-                    <p class="text-sm text-indigo-300">Udemy</p>
-                </a>
-                <a href="https://coursera.org/verify/QFJHJRD3UMXZ" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZRF9RS7ReyzCtlkRLz4bJqFwN8_wNPpI_RQ&s" alt="Splunk Logo" class="h-12 w-auto mb-4 logo-invert">
-                    <h3 class="font-bold text-white">Splunk 101</h3>
-                    <p class="text-sm text-indigo-300">Splunk / Coursera</p>
+                <a href="https://app.letsdefend.io/user/syedme18" target="_blank" class="inline-block bg-white/10 text-white font-semibold px-6 py-3 rounded-md border border-white/20 hover:bg-[#0d1117] transition-all duration-300 shadow-sm transform hover:scale-105">
+                    LetsDefend Profile
                 </a>
             </div>
-        </section>
-    </main>
+        </header>
 
-    <footer id="contact" class="bg-transparent mt-12 pb-12">
-        <div class="container mx-auto px-6 py-12 text-center">
-            <h2 class="section-header text-3xl font-bold mb-10 uppercase">GET IN TOUCH</h2>
-            <div class="glass-card max-w-2xl mx-auto p-10">
-                <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
-                        <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+        <main class="container mx-auto px-6 py-8">
+
+            <!-- Experience Section -->
+            <section id="experience" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase">Professional_Experience</h2>
+                <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500">
+                    <div class="flex flex-col md:flex-row justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Soc Analyst Intern</h3>
+                            <p class="text-indigo-400 font-mono">Techensglobal | Bengaluru – Karnataka</p>
+                        </div>
+                        <div class="mt-2 md:mt-0">
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-sm font-mono italic">Dec 2024 – Present</span>
+                        </div>
                     </div>
-                    <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
-                    <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest">TRANSMIT_MESSAGE</button></div>
-                    <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
-                </form>
+                    <ul class="space-y-4 text-gray-300 mode-transition" id="experience-list">
+                        <li class="exp-bullet" 
+                            data-tech="Monitored security events and incidents for 5+ client environments simultaneously in a Managed SOC setup, ensuring continuous threat detection and response."
+                            data-biz="Managing 24/7 security oversight for 5+ enterprise clients, ensuring business-critical assets remain protected from emerging cyber threats.">
+                            Monitored security events and incidents for 5+ client environments simultaneously in a Managed SOC setup, ensuring continuous threat detection and response.
+                        </li>
+                        <li class="exp-bullet"
+                            data-tech="Worked with SIEM and security tools including Elastic Stack, CrowdStrike Falcon, Microsoft Sentinel, and WatchGuard EDR to analyze logs and investigate alerts."
+                            data-biz="Utilizing industry-leading security intelligence platforms to maintain high-fidelity monitoring and minimize operational downtime during security incidents.">
+                            Worked with SIEM and security tools including <span class="text-white font-semibold">Elastic Stack, CrowdStrike Falcon, Microsoft Sentinel, and WatchGuard EDR</span> to analyze logs and investigate alerts.
+                        </li>
+                        <li class="exp-bullet"
+                            data-tech="Investigated alerts from multiple sources such as firewalls, Azure AD, cloud applications, and endpoint security tools."
+                            data-biz="Performing comprehensive risk analysis across hybrid cloud infrastructures to identify and neutralize potential vulnerabilities before they impact operations.">
+                            Investigated alerts from multiple sources such as firewalls, Azure AD, cloud applications, and endpoint security tools.
+                        </li>
+                        <li class="exp-bullet"
+                            data-tech="Created and delivered security reports summarizing incidents, trends, and risk posture for stakeholders."
+                            data-biz="Generating strategic security reports for management, providing clear visibility into risk trends and organizational security health.">
+                            Created and delivered security reports summarizing incidents, trends, and risk posture for stakeholders.
+                        </li>
+                        <li class="exp-bullet"
+                            data-tech="Performed log analysis, event correlation, and basic threat hunting across network and cloud environments."
+                            data-biz="Optimizing incident response timelines through advanced data correlation and proactive threat hunting methodologies.">
+                            Performed log analysis, event correlation, and basic threat hunting across network and cloud environments.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SOC Operational Metrics Section -->
+            <section id="metrics" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase tracking-widest">SOC OPERATIONAL METRICS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+                    <div class="glass-card p-6 border-t-2 border-blue-500">
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Environment Load</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">5+</span>
+                            <span class="text-slate-400 text-xs font-mono">Clients</span>
+                        </div>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">Managed concurrently across 8h shifts.</p>
+                    </div>
+                    <div class="glass-card p-6 border-t-2 border-purple-500">
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Alerts / Day</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">150+</span>
+                            <span class="text-slate-400 text-xs font-mono">In-Shift</span>
+                        </div>
+                        <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 border-t-2 border-emerald-500">
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Reported Alerts</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">8-10</span>
+                            <span class="text-slate-400 text-xs font-mono">Validated</span>
+                        </div>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">High-fidelity incidents escalated.</p>
+                    </div>
+                    <div class="glass-card p-6 border-t-2 border-pink-500">
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Response SLA</p>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-white">100%</span>
+                            <span class="text-green-400 text-xs font-mono">Reliability</span>
+                        </div>
+                        <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                            <div class="h-full bg-pink-500 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center mb-10">Technical Skills</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-card p-4 text-center font-medium text-white">Information Security</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Network Security</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Incident Response</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Malware Analysis</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">SIEM & SOAR</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Threat Intelligence</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">IDS/IPS</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Log Analysis</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Vulnerability Management</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Linux</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Python</div>
+                    <div class="glass-card p-4 text-center font-medium text-white">Bash</div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center mb-12">PERSONAL PROJECTS</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-semibold text-white">SOC Automation Project</h3>
+                            <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
+                               data-tech="Automating Security Operations Center tasks for efficiency using custom scripts and API integrations."
+                               data-biz="Increasing operational efficiency by automating repetitive security tasks, reducing response times for critical incidents.">
+                                Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.
+                            </p>
+                            <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-semibold text-white">Splunk Enterprise Setup</h3>
+                            <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
+                               data-tech="Guide for setting up Splunk and ingesting data for deep security analysis and visibility."
+                               data-biz="Implementation of enterprise-grade monitoring systems to provide high-level visibility into security infrastructure.">
+                                Guide for setting up Splunk and ingesting data for deep security analysis and visibility.
+                            </p>
+                            <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-semibold text-white">Wazuh Installation Lab</h3>
+                            <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
+                               data-tech="A comprehensive lab for Wazuh installation and agent deployment for endpoint protection."
+                               data-biz="Deploying endpoint protection solutions to ensure decentralized security across all organizational touchpoints.">
+                                A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.
+                            </p>
+                            <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-semibold text-white">Malware Analysis Lab Setup</h3>
+                            <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
+                               data-tech="Setting up a secure, isolated environment for malware analysis using specialized toolsets."
+                               data-biz="Advanced threat analysis protocols to identify and mitigate sophisticated cyber-attacks in controlled environments.">
+                                Setting up a secure, isolated environment for malware analysis using specialized toolsets.
+                            </p>
+                            <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card p-6">
+                            <h3 class="text-xl font-semibold text-white">Active Directory Setup</h3>
+                            <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
+                               data-tech="AD and Domain Controller setup in a virtual environment for identity management practice."
+                               data-biz="Developing secure identity and access management frameworks to protect organizational integrity and user data.">
+                                AD and Domain Controller setup in a virtual environment for identity management practice.
+                            </p>
+                            <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tools Section -->
+            <section id="tools" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL_CATALOG</h2>
+                <div class="w-full max-w-6xl mx-auto glass-card p-8">
+                    <div class="flex flex-wrap justify-center border-b border-white/10 mb-10 pb-4 gap-3">
+                        <button class="tab-button active transition-all duration-300" onclick="openTab(event, 'network')">Network</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'endpoint')">Endpoint</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'siem')">SIEM</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'soar')">SOAR</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'offensive')">Offensive</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'malware')">Malware</button>
+                        <button class="tab-button transition-all duration-300" onclick="openTab(event, 'threatintel')">Threat Intel</button>
+                    </div>
+
+                    <!-- Network Tab -->
+                    <div id="network" class="tab-content active">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <h3 class="text-white font-bold">Wireshark</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div>
+                                <h3 class="text-white font-bold">Fiddler</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Endpoint Tab -->
+                    <div id="endpoint" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                                <h3 class="text-white font-bold">Wazuh</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                                <h3 class="text-white font-bold">WatchGuard</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                                <h3 class="text-white font-bold">CrowdStrike</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SIEM Tab -->
+                    <div id="siem" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                                <h3 class="text-white font-bold">Elastic Stack</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <h3 class="text-white font-bold">Sentinel</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M9 9l3 3 4-4"/></svg></div>
+                                <h3 class="text-white font-bold">Splunk</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SOAR Tab -->
+                    <div id="soar" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4l3 3-3 3M6 20l-3-3 3-3"/><path d="M3 17h12a3 3 0 0 0 3-3V4M21 7H9a3 3 0 0 0-3 3v10"/></svg></div>
+                                <h3 class="text-white font-bold">Shuffle</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offensive Tab -->
+                    <div id="offensive" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                                <h3 class="text-white font-bold">Metasploit</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg></div>
+                                <h3 class="text-white font-bold">Nmap</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                                <h3 class="text-white font-bold">BeEF</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Malware Tab -->
+                    <div id="malware" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17.07l.07.06A6 6 0 0 1 10 15h4a6 6 0 0 1 4.93 4.13l.07-.06A10 10 0 0 0 12 2z"/></svg></div>
+                                <h3 class="text-white font-bold">REMnux</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
+                                <h3 class="text-white font-bold">ProcMon</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                                <h3 class="text-white font-bold">PEStudio</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 9h6M9 12h6M9 15h6"/></svg></div>
+                                <h3 class="text-white font-bold">HxD</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg></div>
+                                <h3 class="text-white font-bold">Sysinternals</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+                                <h3 class="text-white font-bold">FlareVM</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Threat Intel Tab -->
+                    <div id="threatintel" class="tab-content">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+                                <h3 class="text-white font-bold">VirusTotal</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+                                <h3 class="text-white font-bold">ANY.RUN</h3>
+                            </div>
+                            <div class="tool-card">
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                                <h3 class="text-white font-bold">Hybrid Analysis</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Investigations Section -->
+            <section id="investigations" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">SOC INVESTIGATIONS</h2>
+                <p class="max-w-4xl mx-auto text-gray-400 text-center mb-8 leading-relaxed text-sm mode-transition" 
+                   id="inv-desc"
+                   data-tech="In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats."
+                   data-biz="Adhering to strict incident response frameworks to manage full-cycle investigation workflows. My process ensures rapid identification, evidentiary documentation, and definitive threat mitigation to minimize organizational impact.">
+                    In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats.
+                </p>
+                <div class="horizontal-scroll-container">
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SQL Injection Payload Detection</h3><img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQL Injection Detection" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">VBScript Suspicious Behavior</h3><img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript Behavior Detection" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Suspicious XLS File Detection</h3><img src="https://github.com/user-attachments/assets/466f89ab-4154-49f3-a921-a1675011fe3a" alt="Xls File Detection" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">RDP Brute-Force Attack Detected</h3><img src="Screenshot 2025-11-02 005126.png" alt="RDP Brute-Force Detection" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Lumma Stealer Analysis</h3><img src="https://github.com/user-attachments/assets/05921650-c7ca-47a3-bab0-6258b5e3644a" alt="Lumma Stealer" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Possible LFI Attack</h3><img src="https://github.com/user-attachments/assets/e3c78e11-14b7-49e9-b38e-5219d54c5053" alt="LFI Attack" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Checkpoint Arbitrary File Read</h3><img src="https://github.com/user-attachments/assets/bd0cdd29-2598-411a-8111-9ed30b3e2ee3" alt="CVE-2024-24919" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SharePoint ToolShell RCE</h3><img src="https://github.com/user-attachments/assets/6cdec6bd-0bfd-4e92-81fa-2135a78130a1" alt="CVE‑2025‑53770" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Possible IDOR Attack Detected</h3><img src="https://github.com/user-attachments/assets/4f886b49-4412-481e-b2ae-57a6a3ca131f" alt="IDOR Attack" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">LS Command Detected in URL</h3><img src="https://github.com/user-attachments/assets/bf167634-0ea1-4d35-9c86-db58ba88c066" alt="LS Command Detected" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Whoami Command in Body</h3><img src="https://github.com/user-attachments/assets/63a3a97a-5834-4f05-baf9-eb40602cefd2" alt="Whoami Detected" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SQL Injection Detected</h3><img src="https://github.com/user-attachments/assets/5c0eb5f2-bd84-4fc9-93d3-4f415415ae61" alt="SQL Injection" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Windows OLE Zero-Click RCE</h3><img src="https://github.com/user-attachments/assets/c155c4c7-0bff-44fa-bab7-c15302665fc9" alt="Zero-Click RCE" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">CVE-2024-49138 Detected</h3><img src="https://github.com/user-attachments/assets/299b7ec1-40d4-4a5f-8acb-fcdde802d035" alt="CVE-2024-49138" class="rounded-lg w-full mt-auto"></div>
+                    <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">Domain MX Record Change</h3><img src="https://github.com/user-attachments/assets/c38bbed9-ccfc-40d0-8796-3c57f3550f71" alt="MX Record Change" class="rounded-lg w-full mt-auto"></div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section id="certifications" class="py-12">
+                <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">Certifications</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
+                        <h3 class="font-bold text-white">SOC Analyst Path</h3>
+                        <p class="text-sm text-indigo-300">LetsDefend</p>
+                    </a>
+                    <a href="https://app.letsdefend.io/certificate/show/821ba41a-9a87-448b-87ae-14458ea1cfeb" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
+                        <h3 class="font-bold text-white">Malware Analysis Path</h3>
+                        <p class="text-sm text-indigo-300">LetsDefend</p>
+                    </a>
+                    <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto mb-4">
+                        <h3 class="font-bold text-white">Google Cybersecurity</h3>
+                        <p class="text-sm text-indigo-300">Google</p>
+                    </a>
+                    <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
+                        <h3 class="font-bold text-white">Ethical Hacking</h3>
+                        <p class="text-sm text-indigo-300">EC-Council</p>
+                    </a>
+                    <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-12 w-auto mb-4 logo-invert">
+                        <h3 class="font-bold text-white">Network Comm</h3>
+                        <p class="text-sm text-indigo-300">Coursera</p>
+                    </a>
+                    <a href="https://coursera.org/verify/MBMY7FDBD409" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" class="h-12 w-auto mb-4 logo-invert">
+                        <h3 class="font-bold text-white">Intro to Linux</h3>
+                        <p class="text-sm text-indigo-300">IBM / Coursera</p>
+                    </a>
+                    <a href="https://www.udemy.com/certificate/UC-2bcf47b7-8d2f-436e-b2d7-8d96cbef0afc/" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e3/Udemy_logo.svg" alt="Udemy Logo" class="h-12 w-auto mb-4 logo-invert">
+                        <h3 class="font-bold text-white">Ethical Hacking</h3>
+                        <p class="text-sm text-indigo-300">Udemy</p>
+                    </a>
+                    <a href="https://coursera.org/verify/QFJHJRD3UMXZ" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZRF9RS7ReyzCtlkRLz4bJqFwN8_wNPpI_RQ&s" alt="Splunk Logo" class="h-12 w-auto mb-4 logo-invert">
+                        <h3 class="font-bold text-white">Splunk 101</h3>
+                        <p class="text-sm text-indigo-300">Splunk / Coursera</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <footer id="contact" class="bg-transparent mt-12 pb-12">
+            <div class="container mx-auto px-6 py-12 text-center">
+                <h2 class="section-header text-3xl font-bold mb-10 uppercase">GET IN TOUCH</h2>
+                <div class="glass-card max-w-2xl mx-auto p-10">
+                    <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                            <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                        </div>
+                        <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
+                        <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest">TRANSMIT_MESSAGE</button></div>
+                        <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
+                    </form>
+                </div>
+                <p class="text-center text-gray-500 mt-10 text-sm tracking-widest uppercase">&copy; 2024 Syed Mohd Hassan. All Rights Reserved.</p>
             </div>
-            <p class="text-center text-gray-500 mt-10 text-sm tracking-widest uppercase">&copy; 2024 Syed Mohd Hassan. All Rights Reserved.</p>
-        </div>
-    </footer>
+        </footer>
+    </div>
     
     <button id="to-top-btn" class="glass-card p-3 rounded-full text-white hover:bg-white/10 transition-all duration-300 shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
@@ -644,6 +744,7 @@
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
         const particleCount = 60, maxDistance = 150;
+        let isRecruiter = false;
 
         class Particle {
             constructor() { this.reset(); }
@@ -655,14 +756,15 @@
                 this.radius = Math.random() * 2 + 1;
             }
             update() {
-                this.x += this.vx; this.y += this.vy;
+                this.x += this.vx * (isRecruiter ? 2.5 : 1); 
+                this.y += this.vy * (isRecruiter ? 2.5 : 1);
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(129, 140, 248, 0.4)';
+                ctx.fillStyle = isRecruiter ? 'rgba(16, 185, 129, 0.6)' : 'rgba(129, 140, 248, 0.4)';
                 ctx.fill();
             }
         }
@@ -682,8 +784,9 @@
                     const dist = Math.sqrt((p1.x - p2.x)**2 + (p1.y - p2.y)**2);
                     if (dist < maxDistance) {
                         ctx.beginPath();
-                        ctx.strokeStyle = `rgba(79, 70, 229, ${0.3 * (1 - dist/maxDistance)})`;
-                        ctx.lineWidth = 0.5;
+                        const color = isRecruiter ? '16, 185, 129' : '79, 70, 229';
+                        ctx.strokeStyle = `rgba(${color}, ${0.3 * (1 - dist/maxDistance)})`;
+                        ctx.lineWidth = isRecruiter ? 1 : 0.5;
                         ctx.moveTo(p1.x, p1.y); ctx.lineTo(p2.x, p2.y);
                         ctx.stroke();
                     }
@@ -735,6 +838,45 @@
                 status.style.color = "#f87171";
             }
         });
+
+        // Recruiter Mode Logic
+        function toggleRecruiterMode() {
+            isRecruiter = !isRecruiter;
+            const toggleBtn = document.getElementById('recruiter-toggle');
+            const mobileToggleBtn = document.getElementById('mobile-recruiter-toggle');
+            const welcomePopup = document.getElementById('welcome-popup');
+            const contentWrapper = document.getElementById('content-wrapper');
+            
+            if (isRecruiter) {
+                toggleBtn.classList.add('active');
+                mobileToggleBtn.classList.add('active');
+                
+                // Show Welcome Popup with Background Blur Only (No solid background)
+                contentWrapper.classList.add('professionally-blurred');
+                welcomePopup.classList.add('show');
+                
+                setTimeout(() => {
+                    welcomePopup.classList.remove('show');
+                    contentWrapper.classList.remove('professionally-blurred');
+                }, 2000);
+            } else {
+                toggleBtn.classList.remove('active');
+                mobileToggleBtn.classList.remove('active');
+            }
+
+            // Update all mode-transition elements
+            const elements = document.querySelectorAll('.mode-transition');
+            elements.forEach(el => {
+                if (el.tagName === 'UL') {
+                    const bullets = el.querySelectorAll('li');
+                    bullets.forEach(li => {
+                        li.innerText = isRecruiter ? li.getAttribute('data-biz') : li.getAttribute('data-tech');
+                    });
+                } else {
+                    el.innerText = isRecruiter ? el.getAttribute('data-biz') : el.getAttribute('data-tech');
+                }
+            });
+        }
     </script>
 </body>
 </html>
