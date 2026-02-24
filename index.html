@@ -147,45 +147,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .tool-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: default;
-            height: 100%;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: rgba(255, 255, 255, 0.07);
-            border-color: #818cf8;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(129, 140, 248, 0.2);
-        }
-
-        .tool-logo-container {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(129, 140, 248, 0.1);
-            border-radius: 50%;
-            transition: all 0.5s ease;
-        }
-
-        .tool-card:hover .tool-logo-container {
-            background: rgba(129, 140, 248, 0.25);
-            transform: rotate(15deg);
-        }
-
         #to-top-btn {
             position: fixed;
             bottom: 20px;
@@ -196,6 +157,24 @@
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
         #to-top-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Recruiter Download Button Style */
+        #recruiter-download-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(100px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            background-color: #10b981;
+            color: white;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
+        }
+        #recruiter-download-btn.show {
             opacity: 1;
             transform: translateY(0);
         }
@@ -687,7 +666,7 @@
                         <p class="text-sm text-indigo-300">Google</p>
                     </a>
                     <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2ft5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2+v5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Ethical Hacking</h3>
                         <p class="text-sm text-indigo-300">EC-Council</p>
                     </a>
@@ -734,6 +713,13 @@
         </footer>
     </div>
     
+    <!-- Floating Download Button for Recruiter -->
+    <a id="recruiter-download-btn" href="https://drive.google.com/file/d/19iCdcCHSJx1-uJHPjFHKHX2Cu06k7VF3/view?usp=drivesdk" target="_blank" title="Download Resume" class="glass-card p-4 rounded-full text-white transition-all duration-300 shadow-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+        </svg>
+    </a>
+
     <button id="to-top-btn" class="glass-card p-3 rounded-full text-white hover:bg-white/10 transition-all duration-300 shadow-lg">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
     </button>
@@ -846,10 +832,12 @@
             const mobileToggleBtn = document.getElementById('mobile-recruiter-toggle');
             const welcomePopup = document.getElementById('welcome-popup');
             const contentWrapper = document.getElementById('content-wrapper');
+            const downloadBtn = document.getElementById('recruiter-download-btn');
             
             if (isRecruiter) {
                 toggleBtn.classList.add('active');
                 mobileToggleBtn.classList.add('active');
+                downloadBtn.classList.add('show');
                 
                 // Show Welcome Popup with Background Blur Only (No solid background)
                 contentWrapper.classList.add('professionally-blurred');
@@ -862,6 +850,7 @@
             } else {
                 toggleBtn.classList.remove('active');
                 mobileToggleBtn.classList.remove('active');
+                downloadBtn.classList.remove('show');
             }
 
             // Update all mode-transition elements
