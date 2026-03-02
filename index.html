@@ -285,6 +285,15 @@
             background-color: rgb(var(--primary-dark-rgb));
             transition: background-color 0.5s ease;
         }
+
+        /* Recruiter Exclusive Fields */
+        .recruiter-only-field {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        body.recruiter-theme .recruiter-only-field {
+            display: block;
+        }
     </style>
 </head>
 <body id="portfolio-body">
@@ -645,7 +654,7 @@
                         <p class="text-sm text-indigo-300 dynamic-text">Google</p>
                     </a>
                     <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2+v5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+MNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_x-vP_j58r7D_iB-A3XUuGvT2mE3p39D37w&s" alt="EC-Council Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Ethical Hacking Essentials</h3>
                         <p class="text-sm text-indigo-300 dynamic-text">EC-Council</p>
                     </a>
@@ -671,19 +680,44 @@
                     </a>
                 </div>
             </section>
-        </header>
+        </main>
 
         <footer id="contact" class="bg-transparent mt-12 pb-12">
             <div class="container mx-auto px-6 py-12 text-center">
-                <h2 class="section-header text-3xl font-bold mb-10 uppercase">GET IN TOUCH</h2>
+                <h2 class="section-header text-3xl font-bold mb-10 uppercase mode-transition" 
+                    data-tech="GET IN TOUCH" 
+                    data-biz="SCHEDULE AN INTERVIEW">GET IN TOUCH</h2>
                 <div class="glass-card max-w-2xl mx-auto p-10">
                     <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
-                            <div><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text mode-transition" 
+                                       data-tech="Name" data-biz="Full Name / Organization">Name</label>
+                                <input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text mode-transition" 
+                                       data-tech="Email" data-biz="Professional Email">Email</label>
+                                <input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all">
+                            </div>
                         </div>
-                        <div class="mb-6"><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
-                        <div class="text-center"><button type="submit" class="text-white font-bold px-12 py-4 rounded-xl transition-all shadow-lg transform hover:scale-105 uppercase tracking-widest dynamic-bg">MESSAGE</button></div>
+
+                        <!-- Recruiter Exclusive Field -->
+                        <div class="mb-6 recruiter-only-field">
+                            <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left text-emerald-400">Proposed Interview Date/Time</label>
+                            <input type="datetime-local" name="proposed_time" class="w-full px-4 py-3 bg-white/5 border border-emerald-500/30 rounded-xl text-white focus:outline-none focus:border-emerald-500 transition-all">
+                        </div>
+
+                        <div class="mb-6">
+                            <label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text mode-transition" 
+                                   data-tech="Message" data-biz="Interview Details / Role Requirements">Message</label>
+                            <textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" id="submit-btn" class="text-white font-bold px-12 py-4 rounded-xl transition-all shadow-lg transform hover:scale-105 uppercase tracking-widest dynamic-bg mode-transition"
+                                    data-tech="MESSAGE" data-biz="SCHEDULE INTERVIEW">MESSAGE</button>
+                        </div>
                         <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
                     </form>
                 </div>
@@ -811,21 +845,66 @@
             document.querySelectorAll('.mode-transition').forEach(el => {
                 const techText = el.getAttribute('data-tech');
                 const bizText = el.getAttribute('data-biz');
-                if (!techText || !bizText) return;
-
-                const content = isRecruiter ? bizText : techText;
 
                 if (el.tagName === 'UL') {
                     el.querySelectorAll('li').forEach(li => {
-                        li.innerText = isRecruiter ? li.getAttribute('data-biz') : li.getAttribute('data-tech');
+                        const b = li.getAttribute('data-biz');
+                        const t = li.getAttribute('data-tech');
+                        if (b && t) li.innerText = isRecruiter ? b : t;
                     });
-                } else if (el.id === 'hero-desc') {
+                    return;
+                }
+
+                if (!techText || !bizText) return;
+                const content = isRecruiter ? bizText : techText;
+
+                if (el.id === 'hero-desc') {
                     el.innerHTML = content;
                 } else {
                     el.innerText = content;
                 }
             });
         }
+
+        // Handle Form Submission via AJAX to prevent page reload/crash
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(contactForm);
+            const action = contactForm.getAttribute('action');
+            
+            submitBtn.disabled = true;
+            submitBtn.innerText = "SENDING...";
+            formStatus.innerText = "";
+
+            try {
+                const response = await fetch(action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    formStatus.classList.remove('text-red-500');
+                    formStatus.classList.add('text-emerald-500');
+                    formStatus.innerText = isRecruiter ? "Success! Interview request sent." : "Success! Your message was sent.";
+                    contactForm.reset();
+                } else {
+                    throw new Error();
+                }
+            } catch (error) {
+                formStatus.classList.remove('text-emerald-500');
+                formStatus.classList.add('text-red-500');
+                formStatus.innerText = "Oops! Something went wrong. Please try again.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = isRecruiter ? "SCHEDULE INTERVIEW" : "MESSAGE";
+            }
+        });
     </script>
 </body>
 </html>
