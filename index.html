@@ -7,19 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #4f46e5;
-            --primary-glow: rgba(79, 70, 229, 0.4);
-            --primary-border: rgba(79, 70, 229, 0.5);
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #030310;
             color: #e0e0e0;
             overflow-x: hidden;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            transition: background-color 0.5s ease;
         }
 
         #cyber-bg {
@@ -45,7 +38,7 @@
 
         .glass-card:hover {
             transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 0 40px var(--primary-glow);
+            box-shadow: 0 0 40px rgba(126, 87, 194, 0.3);
             border-color: rgba(255, 255, 255, 0.25);
         }
         
@@ -75,7 +68,7 @@
 
         .typewriter h1 {
             overflow: hidden;
-            border-right: .15em solid var(--primary);
+            border-right: .15em solid #818cf8;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .1em;
@@ -89,7 +82,7 @@
 
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: var(--primary); }
+            50% { border-color: #818cf8; }
         }
 
         .timeline-item {
@@ -108,7 +101,7 @@
             top: 0;
             height: 1rem;
             width: 1rem;
-            background-color: var(--primary);
+            background-color: #818cf8;
             border-radius: 50%;
             border: 2px solid #0d1117;
         }
@@ -141,9 +134,9 @@
         }
 
         .tab-button.active {
-            background-color: var(--primary);
+            background-color: #4f46e5;
             color: white;
-            box-shadow: 0 0 15px var(--primary-glow);
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
         }
 
         .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
@@ -187,7 +180,7 @@
 
         .exp-bullet::before {
             content: '>';
-            color: var(--primary);
+            color: #818cf8;
             font-family: monospace;
             margin-right: 0.5rem;
             font-weight: bold;
@@ -240,6 +233,7 @@
             filter: blur(15px) brightness(0.6);
         }
         
+        /* Tool Card Styles */
         .tool-card {
             display: flex;
             flex-direction: column;
@@ -253,26 +247,15 @@
         }
         .tool-card:hover {
             background: rgba(255, 255, 255, 0.08);
-            border-color: var(--primary-border);
+            border-color: rgba(129, 140, 248, 0.3);
             transform: scale(1.05);
         }
         .tool-logo-container {
             margin-bottom: 0.75rem;
         }
-
-        /* Innovation: Recruiter Badge */
-        #hiring-badge {
-            display: none;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
     </style>
 </head>
-<body class="theme-tech">
+<body>
     <canvas id="cyber-bg"></canvas>
 
     <div id="welcome-popup">WELCOME RECRUITER</div>
@@ -315,11 +298,6 @@
         </nav>
 
         <header class="container mx-auto px-6 py-24 text-center flex flex-col items-center">
-            <!-- Innovation: Dynamic Hiring Badge -->
-            <div id="hiring-badge" class="mb-4 px-4 py-1 bg-emerald-500/20 border border-emerald-500/50 rounded-full text-emerald-400 text-xs font-bold uppercase tracking-widest">
-                Available for Immediate Hire
-            </div>
-
             <div class="typewriter max-w-2xl">
                 <h1 class="text-4xl md:text-5xl font-bold text-white">Syed Mohd Hassan</h1>
             </div>
@@ -328,12 +306,10 @@
                data-tech="Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. Passionate about Defensive Security, focusing on threat identification and incident response."
                data-biz="Strategic Cybersecurity professional specialized in organizational risk mitigation and asset protection. Dedicated to maintaining business continuity through proactive threat management and resilient security architecture.">
                  Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. 
-                 Passionate about <span class="text-indigo-400 font-semibold mode-text">Defensive Security</span>, focusing on threat identification and incident response.
+                 Passionate about <span class="text-indigo-400 font-semibold">Defensive Security</span>, focusing on threat identification and incident response.
             </p>
             <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a id="cta-primary" href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" 
-                   class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105"
-                   data-tech="Connect on LinkedIn" data-biz="Schedule Interview">
+                <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105">
                     Connect on LinkedIn
                 </a>
                 <a href="https://app.letsdefend.io/user/syedme18" target="_blank" class="inline-block bg-white/10 text-white font-semibold px-6 py-3 rounded-md border border-white/20 hover:bg-[#0d1117] transition-all duration-300 shadow-sm transform hover:scale-105">
@@ -346,15 +322,15 @@
 
             <!-- Experience Section -->
             <section id="experience" class="py-12">
-                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase">Professional Experience</h2>
-                <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500" id="experience-card">
+                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase">Professional_Experience</h2>
+                <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500">
                     <div class="flex flex-col md:flex-row justify-between mb-6">
                         <div>
                             <h3 class="text-2xl font-bold text-white">Soc Analyst Intern</h3>
-                            <p class="text-indigo-400 font-mono mode-accent">Techensglobal | Bengaluru – Karnataka</p>
+                            <p class="text-indigo-400 font-mono">Techensglobal | Bengaluru – Karnataka</p>
                         </div>
                         <div class="mt-2 md:mt-0">
-                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-sm font-mono italic mode-badge">Dec 2024 – Present</span>
+                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-sm font-mono italic">Dec 2024 – Present</span>
                         </div>
                     </div>
                     <ul class="space-y-4 text-gray-300 mode-transition" id="experience-list">
@@ -392,36 +368,36 @@
                 <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase tracking-widest">SOC OPERATIONAL METRICS</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                     <div class="glass-card p-6 border-t-2 border-blue-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2 mode-accent-text" data-tech="Environment Load" data-biz="Client Portfolio">Environment Load</p>
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Environment Load</p>
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-bold text-white">5+</span>
-                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="Clients" data-biz="Enterprises">Clients</span>
+                            <span class="text-slate-400 text-xs font-mono">Clients</span>
                         </div>
-                        <p class="text-slate-500 text-xs mt-3 leading-tight italic mode-transition" data-tech="Managed concurrently across 8h shifts." data-biz="Maintaining business continuity for diverse sectors.">Managed concurrently across 8h shifts.</p>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">Managed concurrently across 8h shifts.</p>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-purple-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2 mode-accent-text" data-tech="Avg Alerts / Day" data-biz="Data Throughput">Avg Alerts / Day</p>
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Alerts / Day</p>
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-bold text-white">150+</span>
-                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="In-Shift" data-biz="Daily Logs">In-Shift</span>
+                            <span class="text-slate-400 text-xs font-mono">In-Shift</span>
                         </div>
                         <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                             <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
                         </div>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-emerald-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2 mode-accent-text" data-tech="Avg Reported Alerts" data-biz="Risk Mitigated">Avg Reported Alerts</p>
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Reported Alerts</p>
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-bold text-white">8-10</span>
-                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="Validated" data-biz="High Risk">Validated</span>
+                            <span class="text-slate-400 text-xs font-mono">Validated</span>
                         </div>
-                        <p class="text-slate-500 text-xs mt-3 leading-tight italic mode-transition" data-tech="High-fidelity incidents escalated." data-biz="Critical threats neutralized before impact.">High-fidelity incidents escalated.</p>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">High-fidelity incidents escalated.</p>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-pink-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2 mode-accent-text" data-tech="Response SLA" data-biz="Uptime Commitment">Response SLA</p>
+                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Response SLA</p>
                         <div class="flex items-baseline gap-2">
                             <span class="text-4xl font-bold text-white">100%</span>
-                            <span class="text-green-400 text-xs font-mono mode-transition" data-tech="Reliability" data-biz="Compliance">Reliability</span>
+                            <span class="text-green-400 text-xs font-mono">Reliability</span>
                         </div>
                         <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                             <div class="h-full bg-pink-500 rounded-full" style="width: 100%"></div>
@@ -462,7 +438,7 @@
                                data-biz="Increasing operational efficiency by automating repetitive security tasks, reducing response times for critical incidents.">
                                 Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.
                             </p>
-                            <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold mode-link">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -474,7 +450,7 @@
                                data-biz="Implementation of enterprise-grade monitoring systems to provide high-level visibility into security infrastructure.">
                                 Guide for setting up Splunk and ingesting data for deep security analysis and visibility.
                             </p>
-                            <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold mode-link">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -486,7 +462,7 @@
                                data-biz="Deploying endpoint protection solutions to ensure decentralized security across all organizational touchpoints.">
                                 A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.
                             </p>
-                            <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold mode-link">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -498,7 +474,7 @@
                                data-biz="Advanced threat analysis protocols to identify and mitigate sophisticated cyber-attacks in controlled environments.">
                                 Setting up a secure, isolated environment for malware analysis using specialized toolsets.
                             </p>
-                            <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold mode-link">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -510,7 +486,7 @@
                                data-biz="Developing secure identity and access management frameworks to protect organizational integrity and user data.">
                                 AD and Domain Controller setup in a virtual environment for identity management practice.
                             </p>
-                            <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold mode-link">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -518,7 +494,7 @@
             
             <!-- Tools Section -->
             <section id="tools" class="py-12">
-                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL CATALOG</h2>
+                <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL_CATALOG</h2>
                 <div class="w-full max-w-6xl mx-auto glass-card p-8">
                     <div class="flex flex-wrap justify-center border-b border-white/10 mb-10 pb-4 gap-3">
                         <button class="tab-button active transition-all duration-300" onclick="openTab(event, 'network')">Network</button>
@@ -538,7 +514,7 @@
                                 <h3 class="text-white font-bold">Wireshark</h3>
                             </div>
                             <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400 mode-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div>
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div>
                                 <h3 class="text-white font-bold">Fiddler</h3>
                             </div>
                         </div>
@@ -573,10 +549,12 @@
                                 <div class="tool-logo-container"><svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
                                 <h3 class="text-white font-bold">CrowdStrike</h3>
                             </div>
+                            <!-- Added Wazuh to SIEM -->
                             <div class="tool-card">
                                 <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
                                 <h3 class="text-white font-bold">Wazuh</h3>
                             </div>
+                            <!-- Added QRadar to SIEM -->
                             <div class="tool-card">
                                 <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0-7 17.07"/><path d="M12 12l5 5"/><circle cx="12" cy="12" r="1"/></svg></div>
                                 <h3 class="text-white font-bold">QRadar</h3>
@@ -654,7 +632,7 @@
                                 <h3 class="text-white font-bold">ANY.RUN</h3>
                             </div>
                             <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500 mode-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
                                 <h3 class="text-white font-bold">Hybrid Analysis</h3>
                             </div>
                         </div>
@@ -697,24 +675,24 @@
                     <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
                         <h3 class="font-bold text-white">SOC Analyst Path</h3>
-                        <p class="text-sm text-indigo-300 mode-accent-text">LetsDefend</p>
+                        <p class="text-sm text-indigo-300">LetsDefend</p>
                     </a>
                     <a href="https://app.letsdefend.io/certificate/show/821ba41a-9a87-448b-87ae-14458ea1cfeb" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
                         <h3 class="font-bold text-white">Malware Analysis Path</h3>
-                        <p class="text-sm text-indigo-300 mode-accent-text">LetsDefend</p>
+                        <p class="text-sm text-indigo-300">LetsDefend</p>
                     </a>
                     <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Google Cybersecurity Professional Certificate</h3>
-                        <p class="text-sm text-indigo-300 mode-accent-text">Google</p>
+                        <p class="text-sm text-indigo-300">Google</p>
                     </a>
                     <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2+v5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Ethical Hacking Essentials</h3>
-                        <p class="text-sm text-indigo-300 mode-accent-text">EC-Council</p>
+                        <p class="text-sm text-indigo-300">EC-Council</p>
                     </a>
-                        <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                    <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-12 w-auto mb-4 logo-invert">
                         <h3 class="font-bold text-white">Network Communication</h3>
                         <p class="text-sm text-indigo-300">Coursera</p>
@@ -733,8 +711,8 @@
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZRF9RS7ReyzCtlkRLz4bJqFwN8_wNPpI_RQ&s" alt="Splunk Logo" class="h-12 w-auto mb-4 logo-invert">
                         <h3 class="font-bold text-white">Splunk 101</h3>
                         <p class="text-sm text-indigo-300">Splunk / Coursera</p>
+                    </a>
                 </div>
-                
             </section>
         </main>
 
@@ -744,11 +722,11 @@
                 <div class="glass-card max-w-2xl mx-auto p-10">
                     <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left mode-accent-text">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all mode-input"></div>
-                            <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left mode-accent-text">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all mode-input"></div>
+                            <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                            <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
                         </div>
-                        <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left mode-accent-text">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all mode-input"></textarea></div>
-                        <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest mode-button">MESSAGE</button></div>
+                        <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
+                        <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest">MESSAGE</button></div>
                         <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
                     </form>
                 </div>
@@ -757,6 +735,7 @@
         </footer>
     </div>
     
+    <!-- Floating Download Button for Recruiter -->
     <a id="recruiter-download-btn" href="https://drive.google.com/file/d/18c2gwRZWrLogIYhMa_hjtXqhF-A3h2aB/view?usp=drivesdk" target="_blank" title="Download Resume" class="glass-card p-4 rounded-full text-white transition-all duration-300 shadow-lg">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
@@ -874,19 +853,11 @@
             const welcomePopup = document.getElementById('welcome-popup');
             const contentWrapper = document.getElementById('content-wrapper');
             const downloadBtn = document.getElementById('recruiter-download-btn');
-            const hiringBadge = document.getElementById('hiring-badge');
             
-            // Theme Transformation
-            const root = document.documentElement;
             if (isRecruiter) {
-                root.style.setProperty('--primary', '#10b981');
-                root.style.setProperty('--primary-glow', 'rgba(16, 185, 129, 0.4)');
-                root.style.setProperty('--primary-border', 'rgba(16, 185, 129, 0.5)');
-                
                 toggleBtn.classList.add('active');
                 mobileToggleBtn.classList.add('active');
                 downloadBtn.classList.add('show');
-                hiringBadge.style.display = 'inline-block';
                 contentWrapper.classList.add('professionally-blurred');
                 welcomePopup.classList.add('show');
                 
@@ -895,19 +866,13 @@
                     contentWrapper.classList.remove('professionally-blurred');
                 }, 2000);
             } else {
-                root.style.setProperty('--primary', '#4f46e5');
-                root.style.setProperty('--primary-glow', 'rgba(79, 70, 229, 0.4)');
-                root.style.setProperty('--primary-border', 'rgba(79, 70, 229, 0.5)');
-
                 toggleBtn.classList.remove('active');
                 mobileToggleBtn.classList.remove('active');
                 downloadBtn.classList.remove('show');
-                hiringBadge.style.display = 'none';
             }
 
-            // Global Text and Style Transformation
-            const modeTrans = document.querySelectorAll('.mode-transition');
-            modeTrans.forEach(el => {
+            const elements = document.querySelectorAll('.mode-transition');
+            elements.forEach(el => {
                 if (el.tagName === 'UL') {
                     const bullets = el.querySelectorAll('li');
                     bullets.forEach(li => {
@@ -917,38 +882,6 @@
                     el.innerText = isRecruiter ? el.getAttribute('data-biz') : el.getAttribute('data-tech');
                 }
             });
-
-            // Accent Colors and Icons
-            document.querySelectorAll('.mode-accent').forEach(el => {
-                el.style.color = isRecruiter ? '#10b981' : '#818cf8';
-            });
-            document.querySelectorAll('.mode-accent-text').forEach(el => {
-                el.innerText = isRecruiter ? el.getAttribute('data-biz') : el.getAttribute('data-tech');
-                el.style.color = isRecruiter ? '#10b981' : '#a5b4fc';
-            });
-            document.querySelectorAll('.mode-badge').forEach(el => {
-                el.style.backgroundColor = isRecruiter ? 'rgba(16, 185, 129, 0.2)' : 'rgba(79, 70, 229, 0.2)';
-                el.style.borderColor = isRecruiter ? 'rgba(16, 185, 129, 0.3)' : 'rgba(79, 70, 229, 0.3)';
-                el.style.color = isRecruiter ? '#10b981' : '#a5b4fc';
-            });
-            document.querySelectorAll('.mode-button').forEach(el => {
-                el.style.backgroundColor = isRecruiter ? '#10b981' : '#4f46e5';
-            });
-            document.querySelectorAll('.mode-link').forEach(el => {
-                el.style.color = isRecruiter ? '#10b981' : '#818cf8';
-            });
-            document.querySelectorAll('.mode-svg').forEach(el => {
-                el.style.color = isRecruiter ? '#10b981' : '#818cf8';
-            });
-            
-            // Hero CTA Logic
-            const cta = document.getElementById('cta-primary');
-            cta.innerText = isRecruiter ? cta.getAttribute('data-biz') : cta.getAttribute('data-tech');
-            cta.style.backgroundColor = isRecruiter ? '#10b981' : '#4f46e5';
-
-            // Card Style Update
-            const expCard = document.getElementById('experience-card');
-            expCard.style.borderLeftColor = isRecruiter ? '#10b981' : '#4f46e5';
         }
     </script>
 </body>
