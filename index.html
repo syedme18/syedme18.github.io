@@ -7,12 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-rgb: 99, 102, 241; /* Indigo 500 */
+            --primary-dark-rgb: 79, 70, 229; /* Indigo 600 */
+            --accent-glow: rgba(126, 87, 194, 0.3);
+        }
+
+        body.recruiter-theme {
+            --primary-rgb: 16, 185, 129; /* Emerald 500 */
+            --primary-dark-rgb: 5, 150, 105; /* Emerald 600 */
+            --accent-glow: rgba(16, 185, 129, 0.3);
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #030310;
             color: #e0e0e0;
             overflow-x: hidden;
             text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+            transition: background-color 0.5s ease;
         }
 
         #cyber-bg {
@@ -38,7 +51,7 @@
 
         .glass-card:hover {
             transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 0 40px rgba(126, 87, 194, 0.3);
+            box-shadow: 0 0 40px var(--accent-glow);
             border-color: rgba(255, 255, 255, 0.25);
         }
         
@@ -49,14 +62,15 @@
             background: rgba(10, 10, 20, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(63, 63, 134, 0.5);
+            border-bottom: 1px solid rgba(var(--primary-rgb), 0.3);
+            transition: border-color 0.5s ease;
         }
         
         .section-header {
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            background: linear-gradient(90deg, #c3aed6, #89d8f0);
+            background: linear-gradient(90deg, rgb(var(--primary-rgb)), #89d8f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -68,7 +82,7 @@
 
         .typewriter h1 {
             overflow: hidden;
-            border-right: .15em solid #818cf8;
+            border-right: .15em solid rgb(var(--primary-rgb));
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: .1em;
@@ -82,7 +96,7 @@
 
         @keyframes blink-caret {
             from, to { border-color: transparent }
-            50% { border-color: #818cf8; }
+            50% { border-color: rgb(var(--primary-rgb)); }
         }
 
         .timeline-item {
@@ -101,9 +115,10 @@
             top: 0;
             height: 1rem;
             width: 1rem;
-            background-color: #818cf8;
+            background-color: rgb(var(--primary-rgb));
             border-radius: 50%;
             border: 2px solid #0d1117;
+            transition: background-color 0.5s ease;
         }
         
         .horizontal-scroll-container {
@@ -115,7 +130,7 @@
         }
         .horizontal-scroll-container::-webkit-scrollbar { height: 8px; }
         .horizontal-scroll-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        .horizontal-scroll-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+        .horizontal-scroll-container::-webkit-scrollbar-thumb { background: rgba(var(--primary-rgb), 0.2); border-radius: 10px; }
         
         .scroll-card {
             flex: 0 0 90%;
@@ -134,9 +149,9 @@
         }
 
         .tab-button.active {
-            background-color: #4f46e5;
+            background-color: rgb(var(--primary-dark-rgb));
             color: white;
-            box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.4);
         }
 
         .tab-content { display: none; animation: fadeIn 0.4s ease-out; }
@@ -180,7 +195,7 @@
 
         .exp-bullet::before {
             content: '>';
-            color: #818cf8;
+            color: rgb(var(--primary-rgb));
             font-family: monospace;
             margin-right: 0.5rem;
             font-weight: bold;
@@ -233,7 +248,6 @@
             filter: blur(15px) brightness(0.6);
         }
         
-        /* Tool Card Styles */
         .tool-card {
             display: flex;
             flex-direction: column;
@@ -247,15 +261,33 @@
         }
         .tool-card:hover {
             background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(129, 140, 248, 0.3);
+            border-color: rgba(var(--primary-rgb), 0.3);
             transform: scale(1.05);
         }
         .tool-logo-container {
             margin-bottom: 0.75rem;
         }
+
+        #direct-hire-btn {
+            display: none;
+            animation: slideInRight 0.5s ease-out forwards;
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .dynamic-text {
+            color: rgb(var(--primary-rgb));
+            transition: color 0.5s ease;
+        }
+        .dynamic-bg {
+            background-color: rgb(var(--primary-dark-rgb));
+            transition: background-color 0.5s ease;
+        }
     </style>
 </head>
-<body>
+<body id="portfolio-body">
     <canvas id="cyber-bg"></canvas>
 
     <div id="welcome-popup">WELCOME RECRUITER</div>
@@ -303,13 +335,16 @@
             </div>
             <p class="mt-4 text-lg text-gray-300 max-w-3xl leading-relaxed mode-transition" 
                id="hero-desc"
-               data-tech="Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. Passionate about Defensive Security, focusing on threat identification and incident response."
-               data-biz="Strategic Cybersecurity professional specialized in organizational risk mitigation and asset protection. Dedicated to maintaining business continuity through proactive threat management and resilient security architecture.">
+               data-tech='Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. Passionate about <span class="dynamic-text font-semibold">Defensive Security</span>, focusing on threat identification and incident response.'
+               data-biz='Strategic Cybersecurity professional specialized in organizational risk mitigation and asset protection. Dedicated to maintaining <span class="dynamic-text font-semibold">Business Continuity</span> through proactive threat management and resilient security architecture.'>
                  Final-year MCA student with a strong foundation in computer science and expertise in cybersecurity. 
-                 Passionate about <span class="text-indigo-400 font-semibold">Defensive Security</span>, focusing on threat identification and incident response.
+                 Passionate about <span class="dynamic-text font-semibold">Defensive Security</span>, focusing on threat identification and incident response.
             </p>
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105">
+            <div class="mt-8 flex flex-wrap justify-center items-center gap-4">
+                <a id="direct-hire-btn" href="#contact" class="bg-emerald-600 text-white font-bold px-8 py-3 rounded-md hover:bg-emerald-700 transition-all duration-300 shadow-lg hover:shadow-emerald-500/50 transform hover:scale-105">
+                    Schedule Interview
+                </a>
+                <a href="https://www.linkedin.com/in/syed-mohd-hassan-0b46a8248/" target="_blank" class="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-md hover:bg-indigo-700 transition-all duration-300 shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 dynamic-bg" id="linkedin-btn">
                     Connect on LinkedIn
                 </a>
                 <a href="https://app.letsdefend.io/user/syedme18" target="_blank" class="inline-block bg-white/10 text-white font-semibold px-6 py-3 rounded-md border border-white/20 hover:bg-[#0d1117] transition-all duration-300 shadow-sm transform hover:scale-105">
@@ -323,14 +358,14 @@
             <!-- Experience Section -->
             <section id="experience" class="py-12">
                 <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase">Professional_Experience</h2>
-                <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500">
+                <div class="max-w-5xl mx-auto glass-card p-8 border-l-4 border-l-indigo-500" id="experience-card">
                     <div class="flex flex-col md:flex-row justify-between mb-6">
                         <div>
                             <h3 class="text-2xl font-bold text-white">Soc Analyst Intern</h3>
-                            <p class="text-indigo-400 font-mono">Techensglobal | Bengaluru – Karnataka</p>
+                            <p class="font-mono dynamic-text" id="company-text">Techensglobal | Bengaluru – Karnataka</p>
                         </div>
                         <div class="mt-2 md:mt-0">
-                            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 rounded-full text-sm font-mono italic">Dec 2024 – Present</span>
+                            <span class="px-3 py-1 bg-white/5 dynamic-text border border-white/10 rounded-full text-sm font-mono italic" id="date-badge">Dec 2024 – Present</span>
                         </div>
                     </div>
                     <ul class="space-y-4 text-gray-300 mode-transition" id="experience-list">
@@ -365,39 +400,42 @@
 
             <!-- SOC Operational Metrics Section -->
             <section id="metrics" class="py-12">
-                <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase tracking-widest">SOC OPERATIONAL METRICS</h2>
+                <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase tracking-widest" 
+                    id="metrics-title" 
+                    data-tech="SOC OPERATIONAL METRICS" 
+                    data-biz="ENTERPRISE RISK METRICS">SOC OPERATIONAL METRICS</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                     <div class="glass-card p-6 border-t-2 border-blue-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Environment Load</p>
+                        <p class="text-xs font-bold uppercase tracking-wider mb-2 dynamic-text mode-transition" data-tech="Environment Load" data-biz="Asset Protection Portfolio">Environment Load</p>
                         <div class="flex items-baseline gap-2">
-                            <span class="text-4xl font-bold text-white">5+</span>
-                            <span class="text-slate-400 text-xs font-mono">Clients</span>
+                            <span class="text-4xl font-bold text-white mode-transition" data-tech="5+" data-biz="Global">5+</span>
+                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="Clients" data-biz="Scope">Clients</span>
                         </div>
-                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">Managed concurrently across 8h shifts.</p>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic mode-transition" data-tech="Managed concurrently across 8h shifts." data-biz="Strategic coverage across diverse industry verticals.">Managed concurrently across 8h shifts.</p>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-purple-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Alerts / Day</p>
+                        <p class="text-xs font-bold uppercase tracking-wider mb-2 dynamic-text mode-transition" data-tech="Avg Alerts / Day" data-biz="Incident Resolution Speed">Avg Alerts / Day</p>
                         <div class="flex items-baseline gap-2">
-                            <span class="text-4xl font-bold text-white">150+</span>
-                            <span class="text-slate-400 text-xs font-mono">In-Shift</span>
+                            <span class="text-4xl font-bold text-white mode-transition" data-tech="150+" data-biz="98%">150+</span>
+                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="In-Shift" data-biz="Efficiency">In-Shift</span>
                         </div>
                         <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
-                            <div class="h-full bg-purple-500 rounded-full" style="width: 85%"></div>
+                            <div class="h-full bg-purple-500 rounded-full transition-all duration-1000" id="metric-bar-1" style="width: 85%"></div>
                         </div>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-emerald-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Avg Reported Alerts</p>
+                        <p class="text-xs font-bold uppercase tracking-wider mb-2 dynamic-text mode-transition" data-tech="Avg Reported Alerts" data-biz="Critical Asset Uptime">Avg Reported Alerts</p>
                         <div class="flex items-baseline gap-2">
-                            <span class="text-4xl font-bold text-white">8-10</span>
-                            <span class="text-slate-400 text-xs font-mono">Validated</span>
+                            <span class="text-4xl font-bold text-white mode-transition" data-tech="8-10" data-biz="99.9%">8-10</span>
+                            <span class="text-slate-400 text-xs font-mono mode-transition" data-tech="Validated" data-biz="Reliability">Validated</span>
                         </div>
-                        <p class="text-slate-500 text-xs mt-3 leading-tight italic">High-fidelity incidents escalated.</p>
+                        <p class="text-slate-500 text-xs mt-3 leading-tight italic mode-transition" data-tech="High-fidelity incidents escalated." data-biz="Zero operational interruption policy maintained.">High-fidelity incidents escalated.</p>
                     </div>
                     <div class="glass-card p-6 border-t-2 border-pink-500">
-                        <p class="text-indigo-300 text-xs font-bold uppercase tracking-wider mb-2">Response SLA</p>
+                        <p class="text-xs font-bold uppercase tracking-wider mb-2 dynamic-text mode-transition" data-tech="Response SLA" data-biz="ROI on Security Investment">Response SLA</p>
                         <div class="flex items-baseline gap-2">
-                            <span class="text-4xl font-bold text-white">100%</span>
-                            <span class="text-green-400 text-xs font-mono">Reliability</span>
+                            <span class="text-4xl font-bold text-white mode-transition" data-tech="100%" data-biz="High">100%</span>
+                            <span class="text-green-400 text-xs font-mono mode-transition" data-tech="Reliability" data-biz="Efficiency">Reliability</span>
                         </div>
                         <div class="mt-4 h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                             <div class="h-full bg-pink-500 rounded-full" style="width: 100%"></div>
@@ -436,9 +474,9 @@
                             <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
                                data-tech="Automating Security Operations Center tasks for efficiency using custom scripts and API integrations."
                                data-biz="Increasing operational efficiency by automating repetitive security tasks, reducing response times for critical incidents.">
-                                Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.
+                                 Automating Security Operations Center tasks for efficiency using custom scripts and API integrations.
                             </p>
-                            <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/SOC-Automation-Project" target="_blank" class="mt-4 inline-block hover:underline transition-colors duration-300 font-semibold dynamic-text">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -448,9 +486,9 @@
                             <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
                                data-tech="Guide for setting up Splunk and ingesting data for deep security analysis and visibility."
                                data-biz="Implementation of enterprise-grade monitoring systems to provide high-level visibility into security infrastructure.">
-                                Guide for setting up Splunk and ingesting data for deep security analysis and visibility.
+                                 Guide for setting up Splunk and ingesting data for deep security analysis and visibility.
                             </p>
-                            <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Splunk-Enterprise-Setup-and-Data-Ingestion-Guide" target="_blank" class="mt-4 inline-block hover:underline transition-colors duration-300 font-semibold dynamic-text">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -460,9 +498,9 @@
                             <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
                                data-tech="A comprehensive lab for Wazuh installation and agent deployment for endpoint protection."
                                data-biz="Deploying endpoint protection solutions to ensure decentralized security across all organizational touchpoints.">
-                                A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.
+                                 A comprehensive lab for Wazuh installation and agent deployment for endpoint protection.
                             </p>
-                            <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Wazuh-Installation-and-Agent-deployment-lab" target="_blank" class="mt-4 inline-block hover:underline transition-colors duration-300 font-semibold dynamic-text">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -472,9 +510,9 @@
                             <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
                                data-tech="Setting up a secure, isolated environment for malware analysis using specialized toolsets."
                                data-biz="Advanced threat analysis protocols to identify and mitigate sophisticated cyber-attacks in controlled environments.">
-                                Setting up a secure, isolated environment for malware analysis using specialized toolsets.
+                                 Setting up a secure, isolated environment for malware analysis using specialized toolsets.
                             </p>
-                            <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Malware-Analysis-Lab" target="_blank" class="mt-4 inline-block hover:underline transition-colors duration-300 font-semibold dynamic-text">View Project &rarr;</a>
                         </div>
                     </div>
                     <div class="timeline-item">
@@ -484,15 +522,15 @@
                             <p class="text-indigo-200 mt-2 text-sm leading-relaxed mode-transition"
                                data-tech="AD and Domain Controller setup in a virtual environment for identity management practice."
                                data-biz="Developing secure identity and access management frameworks to protect organizational integrity and user data.">
-                                AD and Domain Controller setup in a virtual environment for identity management practice.
+                                 AD and Domain Controller setup in a virtual environment for identity management practice.
                             </p>
-                            <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-semibold">View Project &rarr;</a>
+                            <a href="https://github.com/syedme18/Setting-Up-Active-Directory-and-Building-a-Domain-Controller-in-a-Virtual-Environment" target="_blank" class="mt-4 inline-block hover:underline transition-colors duration-300 font-semibold dynamic-text">View Project &rarr;</a>
                         </div>
                     </div>
                 </div>
             </section>
             
-            <!-- Tools Section -->
+            <!-- Tool Catalog -->
             <section id="tools" class="py-12">
                 <h2 class="section-header text-3xl font-bold text-center mb-10 uppercase tracking-widest">TOOL_CATALOG</h2>
                 <div class="w-full max-w-6xl mx-auto glass-card p-8">
@@ -506,149 +544,68 @@
                         <button class="tab-button transition-all duration-300" onclick="openTab(event, 'threatintel')">Threat Intel</button>
                     </div>
 
-                    <!-- Network Tab -->
                     <div id="network" class="tab-content active">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                                <h3 class="text-white font-bold">Wireshark</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div>
-                                <h3 class="text-white font-bold">Fiddler</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3 class="text-white font-bold">Wireshark</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6M9 12h6M9 15h6"/></svg></div><h3 class="text-white font-bold">Fiddler</h3></div>
                         </div>
                     </div>
 
-                    <!-- Endpoint Tab -->
                     <div id="endpoint" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                                <h3 class="text-white font-bold">WatchGuard</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-orange-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3 class="text-white font-bold">WatchGuard</h3></div>
                         </div>
                     </div>
 
-                    <!-- SIEM Tab -->
                     <div id="siem" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
-                                <h3 class="text-white font-bold">Elastic Stack</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                                <h3 class="text-white font-bold">Sentinel</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M9 9l3 3 4-4"/></svg></div>
-                                <h3 class="text-white font-bold">Splunk</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                                <h3 class="text-white font-bold">CrowdStrike</h3>
-                            </div>
-                            <!-- Added Wazuh to SIEM -->
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-                                <h3 class="text-white font-bold">Wazuh</h3>
-                            </div>
-                            <!-- Added QRadar to SIEM -->
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0-7 17.07"/><path d="M12 12l5 5"/><circle cx="12" cy="12" r="1"/></svg></div>
-                                <h3 class="text-white font-bold">QRadar</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3 class="text-white font-bold">Elastic Stack</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3 class="text-white font-bold">Sentinel</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18M9 9l3 3 4-4"/></svg></div><h3 class="text-white font-bold">Splunk</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-pink-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3 class="text-white font-bold">CrowdStrike</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3 class="text-white font-bold">Wazuh</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 0-7 17.07"/><path d="M12 12l5 5"/><circle cx="12" cy="12" r="1"/></svg></div><h3 class="text-white font-bold">QRadar</h3></div>
                         </div>
                     </div>
 
-                    <!-- SOAR Tab -->
                     <div id="soar" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4l3 3-3 3M6 20l-3-3 3-3"/><path d="M3 17h12a3 3 0 0 0 3-3V4M21 7H9a3 3 0 0 0-3 3v10"/></svg></div>
-                                <h3 class="text-white font-bold">Shuffle</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 4l3 3-3 3M6 20l-3-3 3-3"/><path d="M3 17h12a3 3 0 0 0 3-3V4M21 7H9a3 3 0 0 0-3 3v10"/></svg></div><h3 class="text-white font-bold">Shuffle</h3></div>
                         </div>
                     </div>
 
-                    <!-- Offensive Tab -->
                     <div id="offensive" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                                <h3 class="text-white font-bold">Metasploit</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg></div>
-                                <h3 class="text-white font-bold">Nmap</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
-                                <h3 class="text-white font-bold">BeEF</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-red-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3 class="text-white font-bold">Metasploit</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/></svg></div><h3 class="text-white font-bold">Nmap</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-yellow-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><h3 class="text-white font-bold">BeEF</h3></div>
                         </div>
                     </div>
 
-                    <!-- Malware Tab -->
                     <div id="malware" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17.07l.07.06A6 6 0 0 1 10 15h4a6 6 0 0 1 4.93 4.13l.07-.06A10 10 0 0 0 12 2z"/></svg></div>
-                                <h3 class="text-white font-bold">REMnux</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div>
-                                <h3 class="text-white font-bold">ProcMon</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-                                <h3 class="text-white font-bold">PEStudio</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 9h6M9 12h6M9 15h6"/></svg></div>
-                                <h3 class="text-white font-bold">HxD</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg></div>
-                                <h3 class="text-white font-bold">Sysinternals</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-                                <h3 class="text-white font-bold">FlareVM</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-slate-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 0 0-7 17.07l.07.06A6 6 0 0 1 10 15h4a6 6 0 0 1 4.93 4.13l.07-.06A10 10 0 0 0 12 2z"/></svg></div><h3 class="text-white font-bold">REMnux</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg></div><h3 class="text-white font-bold">ProcMon</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3 class="text-white font-bold">PEStudio</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3zM9 9h6M9 12h6M9 15h6"/></svg></div><h3 class="text-white font-bold">HxD</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg></div><h3 class="text-white font-bold">Sysinternals</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><h3 class="text-white font-bold">FlareVM</h3></div>
                         </div>
                     </div>
 
-                    <!-- Threat Intel Tab -->
                     <div id="threatintel" class="tab-content">
                         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-                                <h3 class="text-white font-bold">VirusTotal</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-                                <h3 class="text-white font-bold">ANY.RUN</h3>
-                            </div>
-                            <div class="tool-card">
-                                <div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
-                                <h3 class="text-white font-bold">Hybrid Analysis</h3>
-                            </div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-green-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><h3 class="text-white font-bold">VirusTotal</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h3 class="text-white font-bold">ANY.RUN</h3></div>
+                            <div class="tool-card"><div class="tool-logo-container"><svg class="w-10 h-10 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h3 class="text-white font-bold">Hybrid Analysis</h3></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Investigations Section -->
             <section id="investigations" class="py-12">
                 <h2 class="section-header text-3xl font-bold text-center text-white mb-10 uppercase">SOC INVESTIGATIONS</h2>
-                <p class="max-w-4xl mx-auto text-gray-400 text-center mb-8 leading-relaxed text-sm mode-transition" 
-                   id="inv-desc"
-                   data-tech="In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats."
-                   data-biz="Adhering to strict incident response frameworks to manage full-cycle investigation workflows. My process ensures rapid identification, evidentiary documentation, and definitive threat mitigation to minimize organizational impact.">
-                    In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats.
-                </p>
+                <p class="max-w-4xl mx-auto text-gray-400 text-center mb-8 leading-relaxed text-sm mode-transition" id="inv-desc" data-tech="In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats." data-biz="Adhering to strict incident response frameworks to manage full-cycle investigation workflows. My process ensures rapid identification, evidentiary documentation, and definitive threat mitigation to minimize organizational impact.">In LetsDefend, my SOC investigations follow a clear workflow where I start in the Monitoring section to review new alerts, then move into Log Management to gather evidence from system, network, and authentication logs. I document my findings in Case Management and perform dynamic analysis using Sandbox environments to safely mitigate threats.</p>
                 <div class="horizontal-scroll-container">
                     <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">SQL Injection Payload Detection</h3><img src="https://github.com/user-attachments/assets/61f1f16f-2377-4f0b-a8be-b2718522c0dc" alt="SQL Injection Detection" class="rounded-lg w-full mt-auto"></div>
                     <div class="scroll-card glass-card p-6"><h3 class="text-xl font-semibold text-white mb-4">VBScript Suspicious Behavior</h3><img src="https://github.com/user-attachments/assets/6a2cbf4d-c9d9-4897-86fd-471d9b852107" alt="VBScript Behavior Detection" class="rounded-lg w-full mt-auto"></div>
@@ -675,24 +632,24 @@
                     <a href="https://app.letsdefend.io/certificate/show/3769450f-f745-48e3-911d-08cb10e49593" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
                         <h3 class="font-bold text-white">SOC Analyst Path</h3>
-                        <p class="text-sm text-indigo-300">LetsDefend</p>
+                        <p class="text-sm text-indigo-300 dynamic-text">LetsDefend</p>
                     </a>
                     <a href="https://app.letsdefend.io/certificate/show/821ba41a-9a87-448b-87ae-14458ea1cfeb" target="_blank" class="glass-card p-6 flex flex-col items-center text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://images.crunchbase.com/image/upload/c_pad,f_auto,q_auto:eco,dpr_1/cnfd0cbk6r1ebqgdxho4" alt="LetsDefend" class="h-16 w-auto rounded-full mb-4">
                         <h3 class="font-bold text-white">Malware Analysis Path</h3>
-                        <p class="text-sm text-indigo-300">LetsDefend</p>
+                        <p class="text-sm text-indigo-300 dynamic-text">LetsDefend</p>
                     </a>
                     <a href="https://www.credly.com/go/qvCgg9F8" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Google Cybersecurity Professional Certificate</h3>
-                        <p class="text-sm text-indigo-300">Google</p>
+                        <p class="text-sm text-indigo-300 dynamic-text">Google</p>
                     </a>
                     <a href="https://codered.eccouncil.org/certificate/79d5ee0c-a369-4127-a388-d70fc1d1440e" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2+v5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+KNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAM1BMVEX/////AAD/v7//f3//QED/EBD/z8//n5//39//7+//cHD/ICD/YGD/r6//j4//MDD/UFAqGzYlAAACxElEQVR4nO2Y25KrIBAAFYLiLfr/X3sSZRDwEq2NSe3Z7pe12BlsMYBMlgEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAu7Gd1vqudiJU+Yjoio8ZhRS3kHJqvDe5o133tq1xAUZXF5kFTnIpQ6TyED0+RxM21Sv9lSYIMN010oGTXMoILqULEzXl7dI5DsjL70v3idLCyaYB5pJfyBnpdBjzvE96axcR9yuktUMdkB7cZWO9fjKQ0txaib25/9hyvE3nEirleNzGUYWNzxWqnDufsu9+tjnsjrSfqdtvZaKYm33ydFN5hty0VdR32JU0mqJ3f123cuP8pqKx2+v5pOMYxMY/6iAjSo4m8KiyK937RdM+s+9B8rRi/VBav5R+MNp40Xmq7ErHislM0p+QVsvpeTss/YiskmU2tx+RrtxVo2Rrsi+kO+0uzDzQQ+fs7x+RVj5WXMp96Wae0VlW+xw3HW/HpMfFav2tHJHWPna+2pUOtOYlS4l+c2JzUV+X1ouUk9LrLH5QI39aunRfoW+Q9rvV417XSs/8t9JyNPhV0juxekv6gtXjr0vX/uhbXyytFikXbuO/ULr6snS/jO1eSr9v9TgnLRvRy+NW0Ny5K/NTacnp5N/9ic0l+EpsrPSUHmzlg7kOD7bST+s7UHOt4aW0fE/Xcuwazkl3ecqhEoIcAkztPuNN8E4Gf+TdkPaPJ9nlOemsyRPSct7iwDQWa4ak8Tl700PUpnSwEYz06yvCtnTqtCzm1XHAVARIDrb9+jvZko5rcWOPp6QzFXWwVj3SYUAjhYsw7VZFD+Ltt6Sj7GkUdqTjUu9UKqr0XOq1K86PLG/RzKXeSstyOUilxI6v3eigWFv4rTVbv6n0uFPq3aA4VlQv026edayorRoLYMeoXBUMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAK7gH5w6Gst0aB3kAAAAAElFTSuQmCC" alt="EC-Council Logo" class="h-16 w-auto mb-4">
                         <h3 class="font-bold text-white">Ethical Hacking Essentials</h3>
-                        <p class="text-sm text-indigo-300">EC-Council</p>
+                        <p class="text-sm text-indigo-300 dynamic-text">EC-Council</p>
                     </a>
-                    <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
+                     <a href="https://coursera.org/verify/080EOF3WVZNK" target="_blank" class="glass-card p-6 flex flex-col items-center justify-between text-center transition-all duration-300 transform hover:scale-105">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Coursera-Logo_600x600.svg/2048px-Coursera-Logo_600x600.svg.png" alt="Coursera Logo" class="h-12 w-auto mb-4 logo-invert">
                         <h3 class="font-bold text-white">Network Communication</h3>
                         <p class="text-sm text-indigo-300">Coursera</p>
@@ -714,7 +671,7 @@
                     </a>
                 </div>
             </section>
-        </main>
+        </header>
 
         <footer id="contact" class="bg-transparent mt-12 pb-12">
             <div class="container mx-auto px-6 py-12 text-center">
@@ -722,11 +679,11 @@
                 <div class="glass-card max-w-2xl mx-auto p-10">
                     <form id="contact-form" action="https://formspree.io/f/mjkekgpj" method="POST">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div><label for="name" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
-                            <div><label for="email" class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                            <div><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Name</label><input type="text" name="name" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
+                            <div><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Email</label><input type="email" name="email" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></div>
                         </div>
-                        <div class="mb-6"><label class="block text-xs font-bold text-indigo-300 uppercase tracking-widest mb-2 text-left">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
-                        <div class="text-center"><button type="submit" class="bg-indigo-600 text-white font-bold px-12 py-4 rounded-xl hover:bg-indigo-500 transition-all shadow-lg hover:shadow-indigo-500/50 transform hover:scale-105 uppercase tracking-widest">MESSAGE</button></div>
+                        <div class="mb-6"><label class="block text-xs font-bold uppercase tracking-widest mb-2 text-left dynamic-text">Message</label><textarea name="message" rows="4" required class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-indigo-500 transition-all"></textarea></div>
+                        <div class="text-center"><button type="submit" class="text-white font-bold px-12 py-4 rounded-xl transition-all shadow-lg transform hover:scale-105 uppercase tracking-widest dynamic-bg">MESSAGE</button></div>
                         <p id="form-status" class="text-center mt-6 text-sm font-semibold"></p>
                     </form>
                 </div>
@@ -735,16 +692,8 @@
         </footer>
     </div>
     
-    <!-- Floating Download Button for Recruiter -->
-    <a id="recruiter-download-btn" href="https://drive.google.com/file/d/18c2gwRZWrLogIYhMa_hjtXqhF-A3h2aB/view?usp=drivesdk" target="_blank" title="Download Resume" class="glass-card p-4 rounded-full text-white transition-all duration-300 shadow-lg">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-        </svg>
-    </a>
-
-    <button id="to-top-btn" class="glass-card p-3 rounded-full text-white hover:bg-white/10 transition-all duration-300 shadow-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg>
-    </button>
+    <a id="recruiter-download-btn" href="https://drive.google.com/file/d/18c2gwRZWrLogIYhMa_hjtXqhF-A3h2aB/view?usp=drivesdk" target="_blank" title="Download Resume" class="glass-card p-4 rounded-full text-white transition-all duration-300 shadow-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></a>
+    <button id="to-top-btn" class="glass-card p-3 rounded-full text-white hover:bg-white/10 transition-all duration-300 shadow-lg"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" /></svg></button>
 
     <script>
         const canvas = document.getElementById('cyber-bg');
@@ -815,7 +764,8 @@
         function openTab(event, tabName) {
             document.querySelectorAll("#tools .tab-content").forEach(tc => tc.classList.remove('active'));
             document.querySelectorAll("#tools .tab-button").forEach(tl => tl.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
+            const target = document.getElementById(tabName);
+            if(target) target.classList.add('active');
             event.currentTarget.classList.add("active");
         }
 
@@ -825,39 +775,24 @@
         };
         toTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        const form = document.getElementById("contact-form");
-        const status = document.getElementById("form-status");
-        form.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const data = new FormData(e.target);
-            try {
-                const response = await fetch(e.target.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-                if (response.ok) {
-                    status.innerHTML = "SYSTEM_MSG: Message transmitted successfully.";
-                    status.style.color = "#6ee7b7";
-                    form.reset();
-                } else {
-                    status.innerHTML = "SYSTEM_ERR: Transmission failed.";
-                    status.style.color = "#f87171";
-                }
-            } catch (err) {
-                status.innerHTML = "SYSTEM_ERR: Network failure.";
-                status.style.color = "#f87171";
-            }
-        });
-
         function toggleRecruiterMode() {
             isRecruiter = !isRecruiter;
+            const body = document.getElementById('portfolio-body');
             const toggleBtn = document.getElementById('recruiter-toggle');
             const mobileToggleBtn = document.getElementById('mobile-recruiter-toggle');
             const welcomePopup = document.getElementById('welcome-popup');
             const contentWrapper = document.getElementById('content-wrapper');
             const downloadBtn = document.getElementById('recruiter-download-btn');
+            const directHireBtn = document.getElementById('direct-hire-btn');
             
+            if (!body || !toggleBtn || !welcomePopup || !contentWrapper || !downloadBtn || !directHireBtn) return;
+
             if (isRecruiter) {
+                body.classList.add('recruiter-theme');
                 toggleBtn.classList.add('active');
-                mobileToggleBtn.classList.add('active');
+                if(mobileToggleBtn) mobileToggleBtn.classList.add('active');
                 downloadBtn.classList.add('show');
+                directHireBtn.style.display = 'inline-block';
                 contentWrapper.classList.add('professionally-blurred');
                 welcomePopup.classList.add('show');
                 
@@ -866,20 +801,28 @@
                     contentWrapper.classList.remove('professionally-blurred');
                 }, 2000);
             } else {
+                body.classList.remove('recruiter-theme');
                 toggleBtn.classList.remove('active');
-                mobileToggleBtn.classList.remove('active');
+                if(mobileToggleBtn) mobileToggleBtn.classList.remove('active');
                 downloadBtn.classList.remove('show');
+                directHireBtn.style.display = 'none';
             }
 
-            const elements = document.querySelectorAll('.mode-transition');
-            elements.forEach(el => {
+            document.querySelectorAll('.mode-transition').forEach(el => {
+                const techText = el.getAttribute('data-tech');
+                const bizText = el.getAttribute('data-biz');
+                if (!techText || !bizText) return;
+
+                const content = isRecruiter ? bizText : techText;
+
                 if (el.tagName === 'UL') {
-                    const bullets = el.querySelectorAll('li');
-                    bullets.forEach(li => {
+                    el.querySelectorAll('li').forEach(li => {
                         li.innerText = isRecruiter ? li.getAttribute('data-biz') : li.getAttribute('data-tech');
                     });
+                } else if (el.id === 'hero-desc') {
+                    el.innerHTML = content;
                 } else {
-                    el.innerText = isRecruiter ? el.getAttribute('data-biz') : el.getAttribute('data-tech');
+                    el.innerText = content;
                 }
             });
         }
