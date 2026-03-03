@@ -202,17 +202,54 @@
         }
         .logo-invert { filter: brightness(0) invert(1); }
 
-        #recruiter-toggle.active {
-            background-color: #10b981;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
-            color: white;
-            border-color: #10b981;
+        /* --- Recruiter Mode Live Border Animation --- */
+        @keyframes rotate-border {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
-        #mobile-recruiter-toggle.active {
-            background-color: #10b981;
-            color: white;
-            border-color: #10b981;
+
+        #recruiter-toggle, #mobile-recruiter-toggle {
+            position: relative;
+            overflow: hidden;
+            background: #0d1117;
+            z-index: 1;
+            border: none !important;
+            transition: all 0.3s ease;
         }
+
+        #recruiter-toggle::before, #mobile-recruiter-toggle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            /* Default animation set to Green (#10b981) */
+            background: conic-gradient(from 0deg, transparent 0%, #10b981 15%, transparent 30%);
+            animation: rotate-border 3s linear infinite;
+            z-index: -1;
+            transition: background 0.5s ease;
+        }
+
+        #recruiter-toggle::after, #mobile-recruiter-toggle::after {
+            content: '';
+            position: absolute;
+            inset: 2px; /* Border thickness */
+            background: #0d1117;
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        /* Active State */
+        #recruiter-toggle.active, #mobile-recruiter-toggle.active {
+            color: white;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+        }
+
+        #recruiter-toggle.active::before, #mobile-recruiter-toggle.active::before {
+            animation: rotate-border 2s linear infinite; /* Faster rotation on active */
+        }
+
         .mode-transition {
             transition: all 0.4s ease;
         }
@@ -315,12 +352,14 @@
                     <a href="#certifications" class="hover:text-white transition-colors duration-300">Certifications</a>
                     <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
                     
-                    <button id="recruiter-toggle" onclick="toggleRecruiterMode()" class="flex items-center gap-2 px-5 py-2 border border-indigo-500/50 rounded-full text-indigo-400 hover:bg-indigo-500/10 transition-all duration-300 font-bold whitespace-nowrap">
-                        Recruiter Mode
+                    <button id="recruiter-toggle" onclick="toggleRecruiterMode()" class="flex items-center gap-2 px-5 py-2 rounded-full text-indigo-400 transition-all duration-300 font-bold whitespace-nowrap">
+                        <span class="relative z-10">Recruiter Mode</span>
                     </button>
                 </div>
                 <div class="lg:hidden flex items-center gap-4">
-                    <button id="mobile-recruiter-toggle" onclick="toggleRecruiterMode()" class="text-xs px-2 py-1 border border-indigo-500/50 rounded-md text-indigo-400">Recruiter Mode</button>
+                    <button id="mobile-recruiter-toggle" onclick="toggleRecruiterMode()" class="text-xs px-2 py-1 rounded-md text-indigo-400">
+                        <span class="relative z-10">Recruiter Mode</span>
+                    </button>
                     <button id="mobile-menu-button" class="text-white focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
