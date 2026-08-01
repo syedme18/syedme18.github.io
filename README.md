@@ -2,6 +2,7 @@
 
 <!--
 
+<img width="2000" height="426" alt="comptia-seeklogo" src="https://github.com/user-attachments/assets/9baadd95-714f-4727-ae1e-39f0708cac1e" />
 
 
 <img width="1493" height="606" alt="Screenshot 2025-11-16 211129" src="https://github.com/user-attachments/assets/84a933dc-c12c-424d-bc7c-ae7276e42c41" />
